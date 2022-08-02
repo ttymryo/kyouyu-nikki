@@ -1,4 +1,4 @@
-<header class="fixed-top">
+
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="navbar-brand col-1">
       <%= link_to root_path do %>
@@ -9,25 +9,24 @@
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li>
-          <%= link_to current_user.name, user_path(current_user.name_id), class: "btn btn-outline-light" %>
+          <%= link_to current_user.name, user_path(current_user.name_id), class: "btn" %>
         </li>
         <li>
-          <%= link_to 'ツイート', new_user_diary_path(current_user.name_id) %>
+          <%= link_to 'ツイート', new_user_diary_path(current_user.name_id), class: "btn" %>
         </li>
         <li>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-outline-light"  %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn"  %>
         </li>
       <% else %>
         <li>
-          <%= link_to 'about', about_path, class: "btn btn-outline-light" %>
+          <%= link_to 'about', about_path, class: "btn" %>
         </li>
         <li>
-          <%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-light" %>
+          <%= link_to '新規登録', new_user_registration_path, class: "btn" %>
         </li>
         <li>
-          <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-light" %>
+          <%= link_to 'ログイン', new_user_session_path, class: "btn" %>
         </li>
       <% end %>
     </ul>
   </nav>
-</header>

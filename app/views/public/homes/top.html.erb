@@ -1,6 +1,14 @@
-<% @diaries.each do |diary| %>
-  <div>
-    <%= link_to diary.user.name, user_path(diary.user.name_id) %>
-    <%= link_to diary.body, user_diary_path(diary.user.name_id, diary) %>
+<div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <div class="card-list-container">
+        <% @diaries.each do |diary| %>
+          <div class="card w-50 mx-auto mt-4 shadow-sm">
+            <%= link_to diary.user.name, user_path(diary.user.name_id) %>
+            <%= link_to diary.body, user_diary_path(diary.user.name_id, diary) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
