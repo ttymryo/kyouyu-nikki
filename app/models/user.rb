@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name_id, uniqueness: true
+  
+  has_one_attached :image
 
   has_many :diaries, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -14,6 +16,14 @@ class User < ApplicationRecord
   has_many :folloewd, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+
+  def get_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpeg')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
 
   def follow(user_id)
     follower.create(followed_id: user_id)
