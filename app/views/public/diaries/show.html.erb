@@ -1,2 +1,11 @@
-<h1>Public::Diaries#show</h1>
-<p>Find me in app/views/public/diaries/show.html.erb</p>
+<%= @diary.body %>
+<%= @diary.emotion_i18n %>
+<%= link_to '編集する', edit_user_diary_path(@diary.user.name_id, @diary) %>
+<% @diary.comments.each do |comment| %>
+  <%= link_to comment.user.name, user_path(comment.user.name_id) %>
+  <%= comment.body %>
+<% end %>
+<%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>

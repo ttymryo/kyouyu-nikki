@@ -1,2 +1,34 @@
-<h1>Public::Diaries#new</h1>
-<p>Find me in app/views/public/diaries/new.html.erb</p>
+<h1>新規ツイート</h1>
+<%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
+  <%= f.radio_button :emotion, Diary.emotions.key(0) %>
+  <%= f.label :emotion, Diary.emotions_i18n[:happy] %>
+
+  <%= f.radio_button :emotion, Diary.emotions.key(1) %>
+  <%= f.label :emotion, Diary.emotions_i18n[:normal] %>
+
+  <%= f.radio_button :emotion, Diary.emotions.key(2) %>
+  <%= f.label :emotion, Diary.emotions_i18n[:unhappy] %>
+
+
+  <%= f.text_area :body %>
+
+
+  <%= f.radio_button :add_commented, true %>
+  <%= f.label :add_commented, 'する' %>
+
+  <%= f.radio_button :add_commented, false %>
+  <%= f.label :add_commented, 'しない' %>
+
+
+  <%= f.radio_button :public_range, Diary.public_ranges.key(0) %>
+  <%= f.label :public_range, Diary.public_ranges_i18n[:myself] %>
+
+  <%= f.radio_button :public_range, Diary.public_ranges.key(1) %>
+  <%= f.label :public_range, Diary.public_ranges_i18n[:in_ff] %>
+
+  <%= f.radio_button :public_range, Diary.public_ranges.key(2) %>
+  <%= f.label :public_range, Diary.public_ranges_i18n[:everyone] %>
+
+
+  <%= f.submit 'ツイート' %>
+<% end %>

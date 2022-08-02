@@ -1,2 +1,6 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<% @diaries.each do |diary| %>
+  <div>
+    <%= link_to diary.user.name, user_path(diary.user.name_id) %>
+    <%= link_to diary.body, user_diary_path(diary.user.name_id, diary) %>
+  </div>
+<% end %>

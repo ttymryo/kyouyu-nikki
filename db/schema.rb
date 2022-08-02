@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 2022_08_02_131221) do
   create_table "diaries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "body", null: false
-    t.integer "emotion", null: false
+    t.integer "emotion", default: 1, null: false
     t.boolean "add_commented", default: false, null: false
-    t.integer "public_renge", default: 0, null: false
+    t.integer "public_range", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

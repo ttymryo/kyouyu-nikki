@@ -1,2 +1,9 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<%= @user.name %>
+<%= @user.name_id %>
+<%= link_to 'プロフィール設定', edit_user_path(@user.name_id) %>
+<% @user.diaries.each do |diary| %>
+  <div>
+    <%= diary.user.name %>
+    <%= link_to diary.body, user_diary_path(diary.user.name_id, diary) %>
+  </div>
+<% end %>
