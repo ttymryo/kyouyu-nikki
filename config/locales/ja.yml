@@ -1,0 +1,11 @@
+ja:
+  enums:
+    diary:
+      public_renge:
+        myself: "自分だけ"
+        in_ff: "FF内"
+        everyone: "全員"
+      emotion:
+        happy: "嬉しい"
+        nomal: "普通"
+        unhappy: "悲しい"
