@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name_id, uniqueness: true
-  
+
   has_one_attached :image
 
   has_many :diaries, dependent: :destroy
@@ -22,7 +22,7 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    image.variant(gravity: :center, resize: "#{width}x#{height}^" , crop:"#{width}x#{height}+0+0").processed
   end
 
   def follow(user_id)

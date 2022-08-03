@@ -1,11 +1,66 @@
-<%= @diary.body %>
-<%= @diary.emotion_i18n %>
-<%= link_to '編集する', edit_user_diary_path(@diary.user.name_id, @diary) %>
-<% @diary.comments.each do |comment| %>
-  <%= link_to comment.user.name, user_path(comment.user.name_id) %>
-  <%= comment.body %>
-<% end %>
-<%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
-  <%= f.text_area :body %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <div class="card-list-container">
+        <div class="card w-80 mx-auto mt-4 shadow-sm">
+          <div class="card-body">
+            <diV class="row">
+              <div class="pr-1">
+                <%= link_to user_path(@diary.user.name_id) do %>
+                  <%= image_tag @diary.user.get_image(50, 50), class: 'rounded-circle' %>
+                <% end %>
+              </div>
+              <div class="col-10">
+                <div class="row">
+                  <div class="col-10 pb-2">
+                    <%= @diary.user.name %> @<%= @diary.user.name_id %>
+                  </div>
+                  <div class="col-10">
+                    <%= @diary.body %>
+                  </div>
+                  <div class="col-2">
+                    <%= @diary.emotion_i18n %>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-right">
+                      <%= link_to '編集する', edit_user_diary_path(@diary.user.name_id, @diary) %>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <% @diary.comments.each do |comment| %>
+                        <div>
+                          <%= link_to user_path(comment.user.name_id) do %>
+                            <%= image_tag comment.user.get_image(50,50), class: 'rounded-circle' %>
+                          <% end %>
+                        </div>
+                        <div class="col-10">
+                          <div class="row">
+                            <div class="col-12">
+                              <%= comment.user.name %>
+                            </div>
+                            <div class="col-12 pb-2">
+                              <%= comment.body %>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
+                      <%= f.text_area :body, class: 'form-control' %>
+                      <div class="text-right">
+                        <%= f.submit '送信' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

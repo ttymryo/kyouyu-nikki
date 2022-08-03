@@ -3,10 +3,25 @@
     <div class="col-9 mx-auto">
       <div class="card-list-container">
         <% @diaries.each do |diary| %>
-          <div class="card w-50 mx-auto mt-4 shadow-sm">
-            <%= link_to diary.user.name, user_path(diary.user.name_id) %>
-            <%= link_to diary.body, user_diary_path(diary.user.name_id, diary) %>
-          </div>
+          <%= link_to user_diary_path(diary.user.name_id,diary) do %>
+            <div class="card w-80 mx-auto mt-4 shadow-sm">
+              <div class="card-body">
+                <diV class="row">
+                  <div class="pr-1">
+                    <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
+                  </div>
+                  <div class="col-10">
+                    <div>
+                      <%= diary.user.name %> @<%= diary.user.name_id %>
+                    </div>
+                    <div class="mt-3">
+                      <%= diary.body %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
