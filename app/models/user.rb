@@ -36,9 +36,16 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-  
+
   def follower?(user)
     follower_user.include?(user)
+  end
+
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー' ,name_id: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name_id = "guestuser"
+    end
   end
 
 end

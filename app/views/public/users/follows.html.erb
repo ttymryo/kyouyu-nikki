@@ -11,9 +11,9 @@
                     <%= image_tag user.get_image(50,50), class: "rounded-circle" %>
                   </div>
                   <div class="col-10">
-                    <div class="row justify-content-between pl-2">
-                      <div><%= user.name %> @<%= user.name_id %></div>
-                      <div>フォロー<%= user.following_user.count %>|フォロワー<%= user.follower_user.count %></div>
+                    <div class="row justify-content-between ml-auto">
+                      <p><%= user.name %> @<%= user.name_id %></p>
+                      <p class="text-right">フォロー<%= user.following_user.count %>|フォロワー<%= user.follower_user.count %></p>
                     </div>
                   </div>
                 </div>

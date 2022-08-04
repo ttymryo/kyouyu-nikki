@@ -1,13 +1,22 @@
 <h1>新規ツイート</h1>
 <%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
-  <%= f.radio_button :emotion, Diary.emotions.key(0) %>
-  <%= f.label :emotion, Diary.emotions_i18n[:happy] %>
 
-  <%= f.radio_button :emotion, Diary.emotions.key(1) %>
-  <%= f.label :emotion, Diary.emotions_i18n[:normal] %>
-
-  <%= f.radio_button :emotion, Diary.emotions.key(2) %>
-  <%= f.label :emotion, Diary.emotions_i18n[:unhappy] %>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label :emotion, 'どう？', class: 'form-label' %>
+    </div>
+    <div class="col-sm-10 btn-group" data-toggle="buttons">
+      <label class="btn btn-outline-secondary" style="width:33%">
+        <%= f.radio_button :emotion, Diary.emotions.key(0), class: 'btn-check' %><%= Diary.emotions_i18n[:happy] %>
+      </label>
+      <label class="btn btn-outline-secondary" style="width:33%">
+        <%= f.radio_button :emotion, Diary.emotions.key(1), class: 'btn-check' %><%= Diary.emotions_i18n[:normal] %>
+      </label>
+      <label class="btn btn-outline-secondary" style="width:33%">
+        <%= f.radio_button :emotion, Diary.emotions.key(2), class: 'btn-check' %><%= Diary.emotions_i18n[:unhappy] %>
+      </label>
+    </div>
+  </div>
 
 
   <%= f.text_area :body %>

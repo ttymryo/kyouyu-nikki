@@ -8,7 +8,11 @@ class Public::DiariesController < ApplicationController
   end
 
   def new
-    @diary = Diary.new
+    if @diary = current_user.diaries.last
+      @diary.body = ''
+    else
+      @diary = Diary.new
+    end
   end
 
   def create
