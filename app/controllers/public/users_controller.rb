@@ -19,6 +19,16 @@ class Public::UsersController < ApplicationController
   def destroy
   end
 
+  def follows
+    user = User.find_by!(name_id: params[:name_id])
+    @users = user.following_user
+  end
+
+  def followers
+    user = User.find_by!(name_id: params[:name_id])
+    @users = user.follower_user
+  end
+
   private
 
   def user_params

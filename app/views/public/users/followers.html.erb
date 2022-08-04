@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <div class="card-list-container">
+        <% @users.each do |user| %>
+          <div class="card w-80 mx-auto mt-4 shadow-sm">
+            <%= link_to user_path(user.name_id) do %>
+              <div class="card-body">
+                <diV class="row">
+                  <div class="pl-1">
+                    <%= image_tag user.get_image(50,50), class: "rounded-circle" %>
+                  </div>
+                  <div class="col-10">
+                    <p><%= user.name %> @<%= user.name_id %></p>
+                    <p class="text-right">フォロー<%= user.following_user.count %>|フォロワー<%= user.follower_user.count %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
