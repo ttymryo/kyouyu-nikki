@@ -14,8 +14,8 @@
           <%= link_to followers_user_path(@user.name_id) do %>
             <p>フォロワー<%= @user.follower_user.count %></p>
           <% end %>
-          <% if user_signed_in? && @user == current_user && @user.name_id != 'guestuser' %>
-            <%= link_to 'プロフィール設定', edit_user_path(@user.name_id) %>
+          <% if user_signed_in? && @user == current_user %>
+            <%= link_to 'プロフィール設定', edit_user_path(@user.name_id), data: {"turbolinks" => false} %>
           <% end %>
           <% if current_user != @user && user_signed_in? %>
             <% if current_user.follower?(@user) %>
