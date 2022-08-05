@@ -44,7 +44,7 @@
                                 <%= comment.user.name %> @<%= comment.user.name_id %>
                               </div>
                               <div class="col-2 ml-auto">
-                                <%= link_to '削除', user_diary_comments_path(@diary.user.name_id, comment.diary.id, comment.id), class: 'ml-2' %>
+                                <%= link_to '削除', user_diary_comment_path(@diary.user.name_id, comment.diary.id, comment.id), method: :delete, class: 'ml-2' %>
                               </div>
                               <div class="col-12 pb-2">
                                 <%= comment.body %>

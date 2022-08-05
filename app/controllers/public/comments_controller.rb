@@ -10,6 +10,12 @@ class Public::CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to user_diary_path(params[:user_name_id],params[:diary_id])
+  end
+
   private
 
   def comment_params
