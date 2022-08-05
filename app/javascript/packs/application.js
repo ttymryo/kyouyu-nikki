@@ -13,7 +13,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-import '../jquery.jscroll.min.js'
+import 'jquery.jscroll.min.js'
+import 'scripts.js'
 
 Rails.start()
 Turbolinks.start()
