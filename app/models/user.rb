@@ -41,6 +41,10 @@ class User < ApplicationRecord
     follower_user.include?(user)
   end
 
+  def ff?(user)
+    following?(user) && follower?(user)
+  end
+
   def self.guest
     find_or_create_by!(name: 'ゲストユーザー' ,name_id: 'guestuser' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
