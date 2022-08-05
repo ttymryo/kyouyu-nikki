@@ -12,7 +12,7 @@
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn" %>
         </li>
         <li>
-          <%= link_to 'ツイート', new_user_diary_path(current_user.name_id), class: "btn" %>
+          <%= link_to 'ツイート', new_user_diary_path(current_user.name_id), class: "btn", data: {"turbolinks" => false} %>
         </li>
         <li>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn"  %>

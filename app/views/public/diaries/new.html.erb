@@ -1,43 +1,71 @@
-<h1>新規ツイート</h1>
-<%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
+<div class="container">
+  <div class="col-10 card w-80 mx-auto mt-4 shadow-sm">
+    <div class="card-body">
+        <%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
 
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <%= f.label :emotion, 'どう？', class: 'form-label' %>
-    </div>
-    <div class="col-sm-10 btn-group" data-toggle="buttons">
-      <label class="btn btn-outline-secondary" style="width:33%">
-        <%= f.radio_button :emotion, Diary.emotions.key(0), class: 'btn-check' %><%= Diary.emotions_i18n[:happy] %>
-      </label>
-      <label class="btn btn-outline-secondary" style="width:33%">
-        <%= f.radio_button :emotion, Diary.emotions.key(1), class: 'btn-check' %><%= Diary.emotions_i18n[:normal] %>
-      </label>
-      <label class="btn btn-outline-secondary" style="width:33%">
-        <%= f.radio_button :emotion, Diary.emotions.key(2), class: 'btn-check' %><%= Diary.emotions_i18n[:unhappy] %>
-      </label>
+          <div class="form_group row pb-4">
+            <div class="col-2">
+              <%= f.label :body, '内容', class: 'form-label' %>
+            </div>
+            <div class="col-10">
+              <%= f.text_area :body, class: ' form-control', autofocus: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= f.label :emotion, 'どう？', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(0), class: 'btn-check' %><%= Diary.emotions_i18n[:happy] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(1), class: 'btn-check' %><%= Diary.emotions_i18n[:normal] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(2), class: 'btn-check' %><%= Diary.emotions_i18n[:unhappy] %>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= f.label :emotion, '公開設定', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(0) %><%= Diary.public_ranges_i18n[:myself] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(1) %><%= Diary.public_ranges_i18n[:in_ff] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(2) %><%= Diary.public_ranges_i18n[:everyone] %>
+              </label>
+            </div>
+          </div>
+
+          <div class="form_group row">
+            <div class="col-2">
+              <%= f.label :add_commented, 'コメントの許可', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons" >
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :add_commented, true %>する
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :add_commented, false %>しない
+              </label>
+            </div>
+          </div>
+
+
+
+
+
+
+          <%= f.submit 'ツイート' %>
+        <% end %>
     </div>
   </div>
-
-
-  <%= f.text_area :body %>
-
-
-  <%= f.radio_button :add_commented, true %>
-  <%= f.label :add_commented, 'する' %>
-
-  <%= f.radio_button :add_commented, false %>
-  <%= f.label :add_commented, 'しない' %>
-
-
-  <%= f.radio_button :public_range, Diary.public_ranges.key(0) %>
-  <%= f.label :public_range, Diary.public_ranges_i18n[:myself] %>
-
-  <%= f.radio_button :public_range, Diary.public_ranges.key(1) %>
-  <%= f.label :public_range, Diary.public_ranges_i18n[:in_ff] %>
-
-  <%= f.radio_button :public_range, Diary.public_ranges.key(2) %>
-  <%= f.label :public_range, Diary.public_ranges_i18n[:everyone] %>
-
-
-  <%= f.submit 'ツイート' %>
-<% end %>
+</div>
