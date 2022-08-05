@@ -8,7 +8,7 @@
               <%= f.label :body, '内容', class: 'form-label' %>
             </div>
             <div class="col-10">
-              <%= f.text_area :body, class: ' form-control', autofocus: true %>
+              <%= f.text_area :body, class: ' form-control',style: 'height: 200px', autofocus: true %>
             </div>
           </div>
           <div class="form-group row">
@@ -58,12 +58,6 @@
               </label>
             </div>
           </div>
-
-
-
-
-
-
           <%= f.submit 'ツイート' %>
         <% end %>
     </div>
