@@ -6,10 +6,13 @@
       </h3>
       <div class="card-list-container hover-zoom jscroll-div">
         <% @diaries.each do |diary| %>
+        <!--公開設定の条件分岐　　いい方法がわからん-->
           <% if signed_in? %>
-            <% if diary.user == current_user || diary.public_range == 'everyone' %>
-              <%= render 'index', diary: diary %>
-            <% elsif current_user.ff?(diary.user) && diary.public_range == 'in_ff' %>
+            <% if diary.user.is_public == true %>
+              <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
+                <%= render 'index', diary: diary %>
+              <% end %>
+            <% elsif diary.user == current_user %>
               <%= render 'index', diary: diary %>
             <% end %>
           <% elsif diary.public_range == 'everyone' %>

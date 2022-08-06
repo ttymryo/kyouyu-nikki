@@ -1,32 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="col-11 mx-auto">
+    <div class="col-10 mx-auto pb-4 border-bottom border-dark">
       <div class="row">
-        <div>
+        <div class="col-2">
           <%= image_tag @user.get_image(100,100), class: 'rounded-circle'%>
         </div>
-        <div>
-          <%= @user.name %>
-          <%= @user.name_id %>
-          <%= link_to follows_user_path(@user.name_id) do %>
-            <p>フォロー<%= @user.following_user.count %></p>
-          <% end %>
-          <%= link_to followers_user_path(@user.name_id) do %>
-            <p>フォロワー<%= @user.follower_user.count %></p>
-          <% end %>
-          <% if user_signed_in? && @user == current_user %>
-            <%= link_to 'プロフィール設定', edit_user_path(@user.name_id), data: {"turbolinks" => false} %>
-          <% end %>
-          <% if current_user != @user && user_signed_in? %>
-            <% if current_user.follower?(@user) %>
-              <p>フォローされています</p>
+        <div class="row col-10">
+          <div class="col-8 p-0">
+            <div class="row justify-content-between">
+              <div>
+                <strong><%= @user.name %></strong> @<%= @user.name_id %> <% if @user.is_public == false %>非公開<% end %>
+              </div>
+            </div>
+            <div>
+              <%= link_to follows_user_path(@user.name_id) do %>
+                フォロー<%= @user.following_user.count %>
+              <% end %>
+              |
+              <%= link_to followers_user_path(@user.name_id) do %>
+                フォロワー<%= @user.follower_user.count %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4 p-0 text-right">
+            <% if user_signed_in? && @user == current_user %>
+              <%= link_to 'プロフィール設定', edit_user_path(@user.name_id), data: {"turbolinks" => false}, class: 'btn btn-outline-success rounded-pill' %>
+            <% elsif current_user != @user && user_signed_in? %>
+              <% if current_user.following?(@user) %>
+                <%= link_to 'フォロー外す', user_relationships_path(@user.name_id), method: :delete, class: 'btn btn-sm btn-outline-danger rounded-pill' %>
+              <% else %>
+                <%= link_to 'フォローする', user_relationships_path(@user.name_id), method: :post, class: 'btn btn-sm btn-outline-primary rounded-pill' %>
+              <% end %>
+              <div class="text-right">
+                <% if current_user.follower?(@user) %>
+                  フォローされています
+                <% end %>
+              </div>
             <% end %>
-            <% if current_user.following?(@user) %>
-              <%= link_to 'フォロー外す', user_relationships_path(@user.name_id), method: :delete, class: 'btn-sm btn-outline' %>
-            <% else %>
-              <%= link_to 'フォローする', user_relationships_path(@user.name_id), method: :post, class: 'btn-sm btn-outline' %>
-            <% end %>
-          <% end %>
+          </div>
+          <div class="col-12 pt-3">
+            <%= @user.introduction %>
+          </div>
         </div>
       </div>
     </div>
