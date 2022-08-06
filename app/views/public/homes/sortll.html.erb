@@ -1,13 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9 col-sm-12 mx-auto">
-      <h3>
-        <%= @word %>
-      </h3>
+      <h3><%= @word %></h3>
       <div class="card-list-container hover-zoom jscroll-div">
         <% @diaries.each do |diary| %>
           <% if signed_in? %>
-            <% if diary.user == current_user || diary.public_range == 'everyone' %>
+            <% if diary.public_range == 'everyone' %>
               <%= render 'index', diary: diary %>
             <% elsif current_user.ff?(diary.user) && diary.public_range == 'in_ff' %>
               <%= render 'index', diary: diary %>

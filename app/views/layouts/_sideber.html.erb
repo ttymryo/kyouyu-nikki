@@ -1,5 +1,14 @@
-<div class="sidebar-fixed">
-  <div>
-    <%= link_to 'いいね', favorites_user_path(current_user.name_id), class: "btn" %>
+<div class="sidebar-fixed pl-3">
+  <div class="pb-3">
+    絞り込み
+  </div>
+  <div class="pb-3">
+    <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
+  </div>
+  <div class="pb-3">
+    <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
+  </div>
+  <div class="pb-3">
+    <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
   </div>
 </div>

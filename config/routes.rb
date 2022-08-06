@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
+    get '/sort' => 'homes#sort'
 
     resources :users, path: '/', param: :name_id do
       resources :diaries do
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
         resources :comments
       end
       member do
-        get :follows, :followers, :favorites
+        get :follows, :followers
       end
       resource :relationships, only: [:create, :destroy]
     end

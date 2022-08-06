@@ -51,10 +51,10 @@
             </div>
             <div class="col-10 btn-group" data-toggle="buttons" >
               <label class="btn btn-outline-secondary" style="width: 33%">
-                <%= f.radio_button :add_commented, true %>する
+                <%= f.radio_button :add_commented, Diary.add_commenteds.key(true) %><%= Diary.add_commenteds_i18n[:permission] %>
               </label>
               <label class="btn btn-outline-secondary" style="width: 33%">
-                <%= f.radio_button :add_commented, false %>しない
+                <%= f.radio_button :add_commented, Diary.add_commenteds.key(false) %><%= Diary.add_commenteds_i18n[:ban] %>
               </label>
             </div>
           </div>
