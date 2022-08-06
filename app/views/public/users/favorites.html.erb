@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-sm-12 mx-auto">
+      <h3>いいね表示</h3>
+      <div class="card-list-container hover-zoom jscroll-div">
+        <% @diaries.each do |favorite| %>
+          <% diary = favorite.diary %>
+          <%= render 'public/homes/index', diary: diary %>
+        <% end %>
+      <%= paginate @diaries %>
+      </div>
+    </div>
+  </div>
+</div>

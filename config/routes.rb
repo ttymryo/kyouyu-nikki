@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resources :comments
       end
       member do
-        get :follows, :followers
+        get :follows, :followers, :favorites
       end
       resource :relationships, only: [:create, :destroy]
     end

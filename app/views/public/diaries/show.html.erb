@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-10 card w-80 mx-auto mt-4 shadow-sm">
+  <div class="col-10 card w-80 mx-auto mt-4 <% if @diary.emotion == 'unhappy'%>border-primary<% elsif @diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>">
     <div class="card-body">
       <diV class="row">
         <div class="col-1 pr-1">

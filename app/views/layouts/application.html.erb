@@ -12,6 +12,13 @@
 
   <body>
     <%= render "layouts/header" %>
-    <%= yield %>
+    <div class="row m-0 px-0 py-4">
+      <div class="col-2 m-0 p-0">
+        <%= render "layouts/sideber" %>
+      </div>
+      <div class="col-10 m-0 p-0">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

@@ -35,6 +35,10 @@ class Public::UsersController < ApplicationController
     @users = user.follower_user
   end
 
+  def favorites
+    @diaries = current_user.favorites.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
   private
 
   def user_params

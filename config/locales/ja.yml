@@ -9,6 +9,9 @@ ja:
         happy: "嬉しい"
         normal: "普通"
         unhappy: "悲しい"
+      add_commented:
+        permission: "許可"
+        ban: "禁止"
 
   activerecord:
     errors:

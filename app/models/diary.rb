@@ -5,7 +5,8 @@ class Diary < ApplicationRecord
 
   enum public_range: { myself: 0, in_ff: 1, everyone: 2 }
   enum emotion: { happy: 0, normal: 1, unhappy: 2 }
-  
+  enum add_commented: { permission: true, ban: false }
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

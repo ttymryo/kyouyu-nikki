@@ -16,13 +16,13 @@
               <%= f.label :emotion, 'どう？', class: 'form-label' %>
             </div>
             <div class="col-10 btn-group" data-toggle="buttons">
-              <label class="btn btn-outline-secondary" style="width: 33%">
+              <label class="btn btn-outline-danger" style="width: 33%">
                 <%= f.radio_button :emotion, Diary.emotions.key(0), class: 'btn-check' %><%= Diary.emotions_i18n[:happy] %>
               </label>
               <label class="btn btn-outline-secondary" style="width: 33%">
                 <%= f.radio_button :emotion, Diary.emotions.key(1), class: 'btn-check' %><%= Diary.emotions_i18n[:normal] %>
               </label>
-              <label class="btn btn-outline-secondary" style="width: 33%">
+              <label class="btn btn-outline-primary" style="width: 33%">
                 <%= f.radio_button :emotion, Diary.emotions.key(2), class: 'btn-check' %><%= Diary.emotions_i18n[:unhappy] %>
               </label>
             </div>

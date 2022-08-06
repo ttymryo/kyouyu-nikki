@@ -1,5 +1,5 @@
 <%= link_to user_diary_path(diary.user.name_id,diary), class: 'text-secondary text-decoration-none' do %>
-  <div class="card card-index w-80 mx-auto mt-4 shadow-sm">
+  <div class="card card-index w-80 mx-auto mt-4 <% if diary.emotion == 'unhappy'%>border-primary<% elsif diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>" >
     <div class="card-body">
       <diV class="row">
         <div class="col-lg-1 col-md-2 col-sm-2 pr-1">
@@ -18,11 +18,11 @@
           <div class="col-12 row p-0 m-0">
             <div class="col-4">
             </div>
-            <div class="col-4 text-center">
+            <div class="col-2 text-right">
               <i class="fa-regular fa-message mr-1"></i><%= diary.comments.count %>
             </div>
-            <div class="col-4 p-0">
-              <p class="text-right m-0">公開設定:<%= diary.public_range_i18n %></p>
+            <div class="col-6 p-0">
+              <p class="text-right m-0">コメント：<%= diary.add_commented_i18n %> | 公開設定：<%= diary.public_range_i18n %></p>
             </div>
           </div>
         </div>
