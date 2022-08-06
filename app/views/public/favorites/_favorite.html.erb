@@ -1,0 +1,16 @@
+<% if signed_in? %>
+  <% if diary.favorited_by?(current_user) %>
+    <%= link_to user_diary_favorites_path(diary.user.name_id, diary), method: :delete, remote: true, class: 'text-decoration-none' do %>
+      <i class="fa-solid fa-heart text-danger text-decoration-none"></i>
+    <% end %>
+  <% else %>
+    <%= link_to user_diary_favorites_path(diary.user.name_id, diary), method: :post, remote: true, class: 'text-decoration-none' do %>
+      <i class="fa-regular fa-heart text-secondary text-decoration-none"></i>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to new_user_session_path, class: 'text-decoration-none' do %>
+    <i class="fa-regular fa-heart text-secondary text-decoration-none"></i>
+  <% end %>
+<% end %>
+<%= diary.favorites.count %>

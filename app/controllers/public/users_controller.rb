@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find_by!(name_id: params[:name_id])
+    @diaries = @user.diaries.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit

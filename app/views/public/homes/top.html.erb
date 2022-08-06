@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-9 mx-auto">
-      <div class="card-list-container jscroll-div">
+      <div class="card-list-container hover-zoom jscroll-div">
         <% @diaries.each do |diary| %>
-          </br><%= diary.user.name %><%= diary.public_range %>あとで消すこと
           <% if signed_in? %>
             <% if diary.user == current_user || diary.public_range == 'everyone' %>
               <%= render 'index', diary: diary %>

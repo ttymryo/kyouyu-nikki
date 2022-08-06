@@ -4,3 +4,23 @@
 .pagination {
   display: none;
 }
+
+.favorite{
+  position: relative;
+  left: 100px;
+  bottom: 45px;
+  margin-bottom: -30px;
+  transition:transform 0.3s;
+}
+
+.favorite:hover{
+  transform:scale(1.2);
+}
+
+.card-index {
+    transition:background-color 0.3s;
+}
+
+.card-index:hover {
+    background-color:#f2f1f1;
+}
