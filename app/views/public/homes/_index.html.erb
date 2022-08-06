@@ -2,26 +2,26 @@
   <div class="card card-index w-80 mx-auto mt-4 shadow-sm">
     <div class="card-body">
       <diV class="row">
-        <div class="col-1 pr-1">
+        <div class="col-lg-1 col-md-2 col-sm-2 pr-1">
           <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
         </div>
-        <div class="col-11 row">
-          <div class="col-9">
+        <div class="col-lg-11 col-md-10 col-sm-10 row">
+          <div class="col-md-9 col-sm-12">
             <strong><%= diary.user.name %></strong> @<%= diary.user.name_id %>
           </div>
-          <div class="col-3 text-right">
+          <div class="col-md-3 col-sm-12 text-right p-0">
             <%= diary.created_at.strftime('%Y/%m/%d') %>
           </div>
           <div class="col-12 mt-3 mb-4">
             <%= diary.body.truncate(200) %>
           </div>
-          <div class="col-12 row m-0">
+          <div class="col-12 row p-0 m-0">
             <div class="col-4">
             </div>
             <div class="col-4 text-center">
-              <i class="fa-solid fa-message"></i><%= diary.comments.count %>
+              <i class="fa-regular fa-message mr-1"></i><%= diary.comments.count %>
             </div>
-            <div class="col-4">
+            <div class="col-4 p-0">
               <p class="text-right m-0">公開設定:<%= diary.public_range_i18n %></p>
             </div>
           </div>
