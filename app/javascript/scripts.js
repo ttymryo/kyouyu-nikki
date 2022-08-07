@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
     contentSelector: '.jscroll-div',
     autoTrigger: true,
     nextSelector: '.next a',  // 次ページリンクのセレクタ
-    loadingHtml: '読み込み中',
+    loadingHtml: '<h4 class="text-center p-5">読み込み中</h4>',
     padding: 10
   });
 });
