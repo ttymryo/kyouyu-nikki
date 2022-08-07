@@ -15,7 +15,7 @@
             <% elsif diary.user == current_user %>
               <%= render 'index', diary: diary %>
             <% end %>
-          <% elsif diary.public_range == 'everyone' %>
+          <% elsif diary.public_range == 'everyone' && diary.user.is_public == true %>
             <%= render 'index', diary: diary %>
           <% end %>
         <% end %>
