@@ -1,0 +1,55 @@
+<div class="form_group row pb-4">
+            <div class="col-2">
+              <%= f.label :body, '内容', class: 'form-label' %>
+            </div>
+            <div class="col-10">
+              <%= f.text_area :body, class: ' form-control',style: 'height: 200px', autofocus: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= f.label :emotion, 'どう？', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-danger" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(0), class: 'btn_icon_none' %><%= Diary.emotions_i18n[:happy] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(1), class: 'btn_icon_none' %><%= Diary.emotions_i18n[:normal] %>
+              </label>
+              <label class="btn btn-outline-primary" style="width: 33%">
+                <%= f.radio_button :emotion, Diary.emotions.key(2), class: 'btn_icon_none' %><%= Diary.emotions_i18n[:unhappy] %>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= f.label :emotion, '公開設定', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(0), class: 'btn_icon_none' %><%= Diary.public_ranges_i18n[:myself] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(1), class: 'btn_icon_none' %><%= Diary.public_ranges_i18n[:in_ff] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :public_range, Diary.public_ranges.key(2), class: 'btn_icon_none' %><%= Diary.public_ranges_i18n[:everyone] %>
+              </label>
+            </div>
+          </div>
+
+          <div class="form_group row">
+            <div class="col-2">
+              <%= f.label :add_commented, 'コメントの許可', class: 'form-label' %>
+            </div>
+            <div class="col-10 btn-group" data-toggle="buttons" >
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :add_commented, Diary.add_commenteds.key(true), class: 'btn_icon_none' %><%= Diary.add_commenteds_i18n[:permission] %>
+              </label>
+              <label class="btn btn-outline-secondary" style="width: 33%">
+                <%= f.radio_button :add_commented, Diary.add_commenteds.key(false), class: 'btn_icon_none' %><%= Diary.add_commenteds_i18n[:ban] %>
+              </label>
+            </div>
+          </div>
