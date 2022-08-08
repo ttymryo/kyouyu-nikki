@@ -47,7 +47,17 @@
     <div class="col-9 mx-auto">
       <div class="card-list-container jscroll-div">
         <% @diaries.each do |diary| %>
-          <%= render 'public/homes/index', diary: diary %>
+          <% if signed_in? %>
+          　<% if diary.user == current_user %>
+              <%= render 'public/homes/index', diary: diary %>
+            <% elsif diary.user.is_public? %>
+              <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
+                <%= render 'public/homes/index', diary: diary %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= render 'public/homes/index', diary: diary %>
+          <% end %>
         <% end %>
         <%= paginate @diaries %>
       </div>
