@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(name: 'ゲストユーザー' ,name_id: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'ゲストユーザー' ,name_id: 'guestuser',introduction: 'このアカウントは共用アカウントです。すべての機能が利用できます。※プロフィールの設定は保存されません。' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name_id = "guestuser"
     end
