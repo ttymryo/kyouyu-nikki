@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
@@ -58,3 +58,4 @@ gem 'devise'
 gem 'enum_help'
 gem 'image_processing', '~> 1.2'
 gem 'kaminari'
+gem "net-smtp"
