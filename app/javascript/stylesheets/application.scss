@@ -2,6 +2,13 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import 'loading';
 
+.header-color, .form-color {
+  background-color: #f4e1cd;
+  .btn {
+    background-color: #ffffff;
+  }
+}
+
 .pagination {
   display: none;
 }
@@ -46,4 +53,23 @@
 .btn_icon_none {
   opacity: 0;
   position: absolute;
+}
+
+.text-line {
+  display: flex;
+  align-items: center; /* 垂直中心 */
+  justify-content: center; /* 水平中心 */
+}
+
+.text-line:before, .text-line:after {
+  border-top: 1px solid;
+  content: "";
+  width: 3em;
+}
+
+.text-line:before {
+  margin-right: 1em; /* 文字の右隣 */
+}
+.text-line:after {
+  margin-left: 1em; /* 文字の左隣 */
 }
