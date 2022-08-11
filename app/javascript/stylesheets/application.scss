@@ -4,7 +4,7 @@
 
 .header-color, .form-color {
   background-color: #f4e1cd;
-  .btn {
+  .btn:not(:hover) {
     background-color: #ffffff;
   }
 }
