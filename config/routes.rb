@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/home' => 'homes#top'
+    resources :users
   end
 
   scope module: :public do
