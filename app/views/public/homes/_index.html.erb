@@ -1,7 +1,7 @@
 <%= link_to user_diary_path(diary.user.name_id,diary), class: 'text-secondary text-decoration-none' do %>
   <div class="card card-index w-80 mx-auto mt-4 <% if diary.emotion == 'unhappy'%>border-primary<% elsif diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>" >
     <div class="card-body">
-      <diV class="row">
+      <div class="row">
         <div class="col-lg-1 col-md-2 col-sm-2 pr-1">
           <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
         </div>

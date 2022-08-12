@@ -48,7 +48,7 @@
       <div class="card-list-container jscroll-div">
         <% @diaries.each do |diary| %>
           <% if signed_in? %>
-          　<% if diary.user == current_user %>
+            <% if diary.user == current_user %>
               <%= render 'public/homes/index', diary: diary %>
             <% elsif diary.user.is_public? %>
               <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
