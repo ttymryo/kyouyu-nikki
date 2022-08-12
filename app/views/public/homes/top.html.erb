@@ -7,7 +7,7 @@
       <div class="card-list-container jscroll-div">
         <% @diaries.each do |diary| %>
         <!--公開設定の条件分岐　　いい方法がわからん-->
-          <% if signed_in? %>
+          <% if user_signed_in? %>
             <% if diary.user.is_public? %>
               <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
                 <%= render 'index', diary: diary %>

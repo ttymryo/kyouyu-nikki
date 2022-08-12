@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-sm-12 mx-auto">
+      <h3>管理者ホーム</h3>
+      <div class="card-list-container jscroll-div">
+        <% @diaries.each do |diary| %>
+          <%= render 'index', diary: diary %>
+        <% end %>
+        <%= paginate @diaries %>
+      </div>
+    </div>
+  </div>
+</div>
