@@ -1,6 +1,7 @@
 <div class="container">
   <div class="col-12 card w-80 mx-auto mt-4 shadow-sm form-color">
     <div class="card-body">
+      <%= render 'layouts/error', obj: @diary %>
       <%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
         <%= render 'form', f: f %>
         <div class="form-group pt-4">

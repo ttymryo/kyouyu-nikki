@@ -54,7 +54,7 @@ class Public::DiariesController < ApplicationController
   end
 
   def ensure_correct_user
-    @user = User.find_by(name_id: params[:name_id])
+    @user = User.find_by(name_id: params[:user_name_id])
     unless @user == current_user
       flash[:notice] = "アカウントが違うため編集できません"
       redirect_to root_path

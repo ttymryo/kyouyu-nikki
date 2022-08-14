@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name_id, presence: true, uniqueness: true
   validates :introduction, presence: true, length: { is: 256 }
-  validates :is_public, presence: true
+  validates :is_public, presence: true, inclusion: {in: [true, false]}
 
   has_one_attached :image
 
