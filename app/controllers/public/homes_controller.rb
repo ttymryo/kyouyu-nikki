@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+  before_action :authenticate_user!, only: [:sort]
   def top
     @word = 'ホーム'
     @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)

@@ -11,12 +11,18 @@
               <strong><%= @user.name %></strong> @<%= @user.name_id %> <span class="border p-1 rounded-pill"><% if @user.is_public? %>公開<% else %>非公開<% end %></span>
             </div>
             <div>
-              <%= link_to follows_user_path(@user.name_id) do %>
-                フォロー<%= @user.following_user.count %>
-              <% end %>
-              |
-              <%= link_to followers_user_path(@user.name_id) do %>
+              <% if @user.is_public? %>
+                <%= link_to follows_user_path(@user.name_id) do %>
+                  フォロー<%= @user.following_user.count %>
+                <% end %>
+                |
+                <%= link_to followers_user_path(@user.name_id) do %>
+                  フォロワー<%= @user.follower_user.count %>
+                <% end %>
+              <% else %>
                 フォロワー<%= @user.follower_user.count %>
+                |
+                フォロー<%= @user.following_user.count %>
               <% end %>
             </div>
           </div>

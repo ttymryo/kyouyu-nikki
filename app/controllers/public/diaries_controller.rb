@@ -1,4 +1,8 @@
 class Public::DiariesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+  before_action :ensure_correct_user, only: [:update, :edit, :destroy]
+  before_action :public_range, only: [:show]
+
   def index
   end
 
@@ -47,5 +51,20 @@ class Public::DiariesController < ApplicationController
 
   def diary_params
     params.require(:diary).permit(:body,:emotion,:add_commented,:public_range)
+  end
+
+  def ensure_correct_user
+    @user = User.find_by(name_id: params[:name_id])
+    unless @user == current_user
+      flash[:notice] = "アカウントが違うため編集できません"
+      redirect_to root_path
+    end
+  end
+
+  def public_range
+    @user = User.find_by(name_id: params[:user_name_id])
+    unless @user.is_public?
+      redirect_to root_path
+    end
   end
 end
