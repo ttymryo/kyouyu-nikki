@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_correct_user
+  before_action :ensure_correct_user, only: [:edit, :update]
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :public_range, only: [:follows, :followers]
 

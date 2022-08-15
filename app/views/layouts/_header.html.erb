@@ -1,6 +1,6 @@
 
   <nav class="navbar sticky-top navbar-expand-lg shadow-sm header-color">
-    <div class="navbar-brand col-1">
+    <div class="navbar-brand col-4">
       <% if admin_signed_in? %>
         <%= link_to admin_home_path do %>
           <%= image_tag 'logo.png',alt: 'ロゴ', size: '180x60' %>
@@ -10,6 +10,10 @@
           <%= image_tag 'logo.png',alt: 'ロゴ', size: '180x60' %>
         <% end %>
       <% end %>
+    </div>
+
+    <div class="mx-auto">
+      <%= link_to 'History', history_user_diaries_path(current_user.name_id), class: 'btn btn-lg rounded-pill' %>
     </div>
 
     <ul class="navbar-nav ml-auto">

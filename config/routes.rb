@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       resources :diaries do
         resource :favorites, only: [:create, :destroy]
         resources :comments
+        collection do
+          get :history
+        end
       end
       member do
         get :follows, :followers

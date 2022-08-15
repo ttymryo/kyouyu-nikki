@@ -47,6 +47,11 @@ class Public::DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
   end
 
+  def history
+    @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
+    @diaries = Diary.where(created_at: @month.all_month).page(params[:page]).per(20)
+  end
+
   private
 
   def diary_params
