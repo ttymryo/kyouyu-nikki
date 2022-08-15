@@ -1,34 +1,57 @@
 <div class="col-12 row justify-content-center">
   <div>
-    <%= link_to history_user_diaries_path(current_user.name_id,month:@month.prev_month), class: 'text-left btn btn-sm btn-outline-primary rounded-circle' do %>
-      <i class="fas fa-arrow-left"></i>
+    <%= link_to history_user_diaries_path(current_user.name_id,month:@month.prev_year), class: 'text-left btn btn-sm btn-outline-primary rounded-circle' do %>
+      <i class="fas fa-angle-double-left"></i>
     <% end %>
   </div>
-  <div class="mx-2">
+  <div class="ml-2">
+    <%= link_to history_user_diaries_path(current_user.name_id,month:@month.prev_month), class: 'text-left btn btn-sm btn-outline-primary rounded-circle' do %>
+      <i class="fas fa-angle-left"></i>
+    <% end %>
+  </div>
+  <div class="mx-3">
     <h4><%= @month.strftime('%Y/%m') %>の記録</h4>
   </div>
-  <div>
+  <div class="mr-2">
     <%= link_to history_user_diaries_path(current_user.name_id,month:@month.next_month), class: 'text-right btn btn-sm btn-outline-primary rounded-circle' do %>
-      <i class="fas fa-arrow-right"></i>
+      <i class="fas fa-angle-right"> </i>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to history_user_diaries_path(current_user.name_id,month:@month.next_year), class: 'text-right btn btn-sm btn-outline-primary rounded-circle' do %>
+      <i class="fas fa-angle-double-right"></i>
     <% end %>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-9 col-sm-12 mx-auto">
+    <div class="col-md-10 col-sm-12 mx-auto">
       <div class="card-list-container jscroll-div">
         <% @diaries.each do |diary| %>
-          <% if user_signed_in? %>
-            <% if diary.user == current_user %>
-              <%= render 'public/homes/index', diary: diary %>
-            <% elsif diary.user.is_public? %>
-              <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
-                <%= render 'public/homes/index', diary: diary %>
-              <% end %>
+          <% unless diary.created_at.day == @day %>
+            <% unless @day == 0 %>
+              <div class="col-12 mb-4 mt-5 pt-3 border-bottom"></div>
             <% end %>
-          <% else %>
-            <%= render 'public/homes/index', diary: diary %>
+            <div class="col-2 pt-3">
+              <div class="date">
+                <span class="date-year"><%= diary.created_at.year %></span><span class="date-month"><%= diary.created_at.month %></span><span class="date-day"><%= diary.created_at.day %></span>
+              </div>
+            </div>
           <% end %>
+          <div class="col-12 row m-4 pt-3 justify-content-end">
+            <div class="col-11">
+              <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-decoration-none text-body' do %>
+                <div class="col-12 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% end %>">
+                  <div>
+                  <%= diary.body %>
+                  <%= diary.created_at %>
+                  <%= diary.created_at.day %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <% @day = diary.created_at.day %>
         <% end %>
         <%= paginate @diaries %>
       </div>

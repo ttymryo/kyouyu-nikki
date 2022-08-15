@@ -1,5 +1,7 @@
 class Public::HomesController < ApplicationController
   before_action :authenticate_user!, only: [:sort]
+  before_action :set_diary_new, only: [:top, :about]
+
   def top
     @word = 'ホーム'
     @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
@@ -44,5 +46,13 @@ class Public::HomesController < ApplicationController
   end
 
   def about
+  end
+
+  def set_diary_new
+    if @diary = current_user.diaries.last
+      @diary.body = ''
+    else
+      @diary = Diary.new
+    end
   end
 end

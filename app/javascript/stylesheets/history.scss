@@ -1,0 +1,19 @@
+.date {
+	margin-bottom: -80px;
+}
+.date-year::after {
+	content: "-";
+}
+.date-year, .date-month {
+	display: inline;
+	color: #f4e1cd;
+	font-size: 16px;
+	font-weight: normal;
+}
+ .date-day {
+	display: block;
+	font-weight: bold;
+	font-size: 45px;
+	line-height: 40px;
+  color: #f4e1cd;
+}

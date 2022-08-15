@@ -1,11 +1,21 @@
   <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-fluid">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">カレンダー検索</h4>
         </div>
         <div class="modal-body">
-          <label>検索窓</label>
+          <div class="col-12 form-color">
+            <div class="card-body">
+              <%= render 'layouts/error', obj: @diary %>
+              <%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
+                <%= render 'public/diaries/form', f: f %>
+                <div class="form-group pt-4">
+                  <%= f.submit 'ツイート', class: 'btn btn-outline-primary btn-block rounded-pill' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>

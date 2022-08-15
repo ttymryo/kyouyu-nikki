@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import 'loading';
+@import 'history';
+@import 'modal';
 
 .header-color, .form-color {
   background-color: #f4e1cd;
