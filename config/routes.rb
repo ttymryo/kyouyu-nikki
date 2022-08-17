@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get '/sort' => 'homes#sort'
+    get '/search' => 'searches#search'
 
     resources :users, path: '/', param: :name_id do
       resources :diaries do

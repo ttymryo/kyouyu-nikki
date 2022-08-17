@@ -19,5 +19,9 @@ class Diary < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def self.looks(word)
+    @diary = Diary.where('body LIKE?', "%#{word}%")
+  end
 
 end

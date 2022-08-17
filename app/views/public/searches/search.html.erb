@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="col-10 row mx-auto">
+    <h4>検索結果：<%= @word %></h4>
+    <div class="container p-0 jscroll-div">
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <div class="col-12 mx-auto my-3 border-bottom">
+            <div class="row mt-2">
+              <div class="col-2">
+                <%= image_tag user.get_image(100,100), class: 'rounded-circle'%>
+              </div>
+              <div class="col-8 p-0">
+                <div>
+                  <strong><%= user.name %></strong> @<%= user.name_id %> <span class="border p-1 rounded-pill"><% if user.is_public? %>公開<% else %>非公開<% end %></span>
+                </div>
+                <div>
+                  <%= link_to follows_user_path(user.name_id) do %>
+                    フォロー<%= user.following_user.count %>
+                  <% end %>
+                  |
+                  <%= link_to followers_user_path(user.name_id) do %>
+                    フォロワー<%= user.follower_user.count %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-2 p-0 text-right">
+                <% if user_signed_in? && user == current_user %>
+                  <%= link_to 'プロフィール設定', edit_user_path(user.name_id), data: {"turbolinks" => false}, class: 'btn btn-outline-success rounded-pill' %>
+                <% elsif current_user != user && user_signed_in? %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to 'フォロー外す', user_relationships_path(user.name_id), method: :delete, class: 'btn btn-sm btn-outline-danger rounded-pill' %>
+                  <% else %>
+                    <%= link_to 'フォローする', user_relationships_path(user.name_id), method: :post, class: 'btn btn-sm btn-outline-primary rounded-pill' %>
+                  <% end %>
+                  <div class="text-right">
+                    <% if current_user.follower?(user) %>
+                      フォローされています
+                    <% end %>
+                  </div>
+                <% elsif admin_signed_in? %>
+                  <%= link_to '設定', edit_admin_user_path(user), data: {"turbolinks" => false}, class: 'btn btn-outline-success rounded-pill' %>
+                <% end %>
+              </div>
+              <div class="col-10 ml-auto py-3">
+                <%= user.introduction %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @users %>
+      <% elsif @diaries.present? %>
+        <% @diaries.each do |diary| %>
+          <%= render 'public/homes/index', diary: diary %>
+        <% end %>
+        <%= paginate @diaries %>
+      <% else %>
+        <h3>該当なし</h3>
+      <% end %>
+    </div>
+  </div>
+</div>

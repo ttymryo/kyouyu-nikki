@@ -56,4 +56,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.looks(word)
+    @user = []
+    @user << User.where('name LIKE?', "%#{word}%")
+    @user << User.where('name_id LIKE?', "%#{word}%")
+    @user.flatten!
+    @user.uniq!
+  end
+
 end
