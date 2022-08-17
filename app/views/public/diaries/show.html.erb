@@ -23,8 +23,23 @@
             </div>
             <div class="col-12 mb-3">
               <div class="text-right">
-                <%= link_to '編集する', edit_user_diary_path(@diary.user.name_id, @diary), data: {"turbolinks" => false} %>
-                <%= link_to '削除', user_diary_path(@diary.user.name_id, @diary), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+                <% if @diary.user == current_user %>
+                  <%= link_to '編集する', edit_user_diary_path(@diary.user.name_id, @diary), data: {"turbolinks" => false} %>
+                  <%= link_to '削除', user_diary_path(@diary.user.name_id, @diary), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-12 row px-0 mb-5  mx-0">
+              <div class="col-4">
+                <div class="favorite_btn_<%= @diary.id %> text-secondary" style="width: 40px">
+                  <%= render 'public/favorites/favorite', diary: @diary %>
+                </div>
+              </div>
+              <div class="col-2 text-right">
+                <i class="far fa-comment mr-1"></i><%= @diary.comments.count %>
+              </div>
+              <div class="col-6 p-0">
+                <p class="text-right m-0">コメント：<%= @diary.add_commented_i18n %> | 公開設定：<%= @diary.public_range_i18n %></p>
               </div>
             </div>
             <div class="col-12">
@@ -42,7 +57,9 @@
                           <%= comment.user.name %> @<%= comment.user.name_id %>
                         </div>
                         <div class="col-2 ml-auto">
-                          <%= link_to '削除', user_diary_comment_path(@diary.user.name_id, comment.diary.id, comment.id), method: :delete, class: 'ml-2' %>
+                          <% if comment.user == current_user %>
+                            <%= link_to '削除', user_diary_comment_path(@diary.user.name_id, comment.diary.id, comment.id), method: :delete, class: 'ml-2' %>
+                          <% end %>
                         </div>
                         <div class="col-12 pb-2">
                           <%= comment.body %>
@@ -54,11 +71,13 @@
               <% end %>
             </div>
             <div class="col-12">
-              <%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
-                <%= f.text_area :body, class: 'form-control' %>
-                <div class="text-right">
-                  <%= f.submit '送信' %>
-                </div>
+              <% if @diary.add_commented? && user_signed_in? %>
+                <%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
+                  <%= f.text_area :body, class: 'form-control' %>
+                  <div class="text-right">
+                    <%= f.submit '送信' %>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>

@@ -49,7 +49,7 @@ class Public::DiariesController < ApplicationController
 
   def history
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
-    @diaries = current_user.diaries.where(created_at: @month.all_month).page(params[:page]).per(20)
+    @diaries = current_user.diaries.where(created_at: @month.all_month)
     @day = 0
   end
 

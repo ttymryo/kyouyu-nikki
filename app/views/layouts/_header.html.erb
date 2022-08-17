@@ -13,7 +13,9 @@
     </div>
 
     <div class="mx-auto">
-      <%= link_to 'History', history_user_diaries_path(current_user.name_id), class: 'btn btn-lg rounded-pill' %>
+      <% if user_signed_in? %>
+        <%= link_to 'History', history_user_diaries_path(current_user.name_id), class: 'btn btn-lg rounded-pill' %>
+      <% end %>
     </div>
 
     <ul class="navbar-nav ml-auto">

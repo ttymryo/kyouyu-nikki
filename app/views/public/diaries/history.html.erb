@@ -26,7 +26,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
-      <div class="card-list-container jscroll-div">
+      <div class="card-list-container">
         <% @diaries.each do |diary| %>
           <% unless diary.created_at.day == @day %>
             <% unless @day == 0 %>
@@ -40,20 +40,25 @@
           <% end %>
           <div class="col-12 row m-4 pt-3 justify-content-end">
             <div class="col-11">
-              <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-decoration-none text-body' do %>
-                <div class="col-12 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% end %>">
-                  <div>
-                  <%= diary.body %>
-                  <%= diary.created_at %>
-                  <%= diary.created_at.day %>
-                  </div>
+              <div class="col-12 row">
+                <div class="col-11 p-0">
+                  <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-decoration-none text-body' do %>
+                    <div class="col-12 p-0 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% end %>">
+                      <%= diary.body %>
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
+                <div class="col-1">
+                  <div class="favorite_btn_<%= diary.id %> text-secondary" style="width: 40px">
+                    <%= render 'public/favorites/favorite', diary: diary %>
+                  </div>
+                    <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+                </div>
+              </div>
             </div>
           </div>
           <% @day = diary.created_at.day %>
         <% end %>
-        <%= paginate @diaries %>
       </div>
     </div>
   </div>

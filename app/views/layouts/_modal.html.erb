@@ -7,13 +7,6 @@
         <div class="modal-body">
           <div class="col-12 form-color">
             <div class="card-body">
-              <%= render 'layouts/error', obj: @diary %>
-              <%= form_with model: @diary, url: user_diaries_path(current_user.name_id), method: :post do |f| %>
-                <%= render 'public/diaries/form', f: f %>
-                <div class="form-group pt-4">
-                  <%= f.submit 'ツイート', class: 'btn btn-outline-primary btn-block rounded-pill' %>
-                </div>
-              <% end %>
             </div>
           </div>
         </div>
