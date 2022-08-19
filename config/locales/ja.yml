@@ -14,6 +14,15 @@ ja:
         ban: "禁止"
 
   activerecord:
+    models:
+      user: 'ユーザー'
+    attributes:
+      user:
+        name: '名前'
+        name_id: 'Name_id'
+        introduction: '自己紹介'
+        email: 'メールアドレス'
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

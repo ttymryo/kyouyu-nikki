@@ -6,8 +6,8 @@ class User < ApplicationRecord
          authentication_keys: [:name_id]
 
   validates :name, presence: true
-  validates :name_id, presence: true, uniqueness: true
-  validates :introduction, presence: true, length: { is: 256 }
+  validates :name_id, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :introduction, length: { maximum: 255 }
   validates :is_public, presence: true, inclusion: {in: [true, false]}
 
   has_one_attached :image

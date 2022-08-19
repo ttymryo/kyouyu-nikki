@@ -21,7 +21,7 @@
             <%= f.label :name_id, 'Name_ID' %>
           </div>
           <div class="col-10">
-            <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", placeholder: "guestuser", class: 'form-control' %>
+            <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", placeholder: "guestuser(半角英数)", pattern: "^[a-zA-Z0-9]+$", class: 'form-control' %>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
             <%= f.label :introduction, '自己紹介' %>
           </div>
           <div class="col-10">
-            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "自己紹介256文字", class: 'form-control' %>
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "自己紹介255文字まで", class: 'form-control' %>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-12 mx-auto px-0 py-2">
-            <%= link_to "新規登録はこちら", new_session_path(resource_name), class: "btn btn-outline-primary btn-block rounded-pill" %>
+            <%= link_to "ログインはこちら", new_session_path(resource_name), class: "btn btn-outline-primary btn-block rounded-pill" %>
           </div>
         </div>
 

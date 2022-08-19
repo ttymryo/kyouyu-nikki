@@ -15,12 +15,15 @@
   display: none;
 }
 
-.favorite{
+.favorite {
+  transition:transform 0.3s;
+}
+
+.favorite-position{
   position: relative;
   left: 100px;
   bottom: 45px;
   margin-bottom: -30px;
-  transition:transform 0.3s;
 }
 
 .favorite:hover{

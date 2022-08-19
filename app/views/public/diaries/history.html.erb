@@ -49,7 +49,7 @@
                   <% end %>
                 </div>
                 <div class="col-1">
-                  <div class="favorite_btn_<%= diary.id %> text-secondary" style="width: 40px">
+                  <div class="favorite_btn_<%= diary.id %> text-secondary favorite" style="width: 40px">
                     <%= render 'public/favorites/favorite', diary: diary %>
                   </div>
                     <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
