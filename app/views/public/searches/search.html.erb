@@ -1,6 +1,10 @@
 <div class="container">
   <div class="col-10 row mx-auto">
-    <h4>検索結果：<%= @word %></h4>
+    <h4 class="col-12">検索結果：<%= @word %></h4>
+    <table class="table col-12">
+      <td class="text-center"><h5><%= link_to 'Diary', search_path(word: @word, range: 'Diary') %></h5></td>
+      <td class="text-center"><h5><%= link_to 'User', search_path(word: @word,range: 'User') %></h5></td>
+    </table>
     <div class="container p-0 jscroll-div">
       <% if @users.present? %>
         <% @users.each do |user| %>
@@ -50,7 +54,19 @@
         <%= paginate @users %>
       <% elsif @diaries.present? %>
         <% @diaries.each do |diary| %>
-          <%= render 'public/homes/index', diary: diary %>
+          <% if user_signed_in? %>
+            <% if diary.user.is_public? %>
+              <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
+                <%= render 'public/homes/index', diary: diary %>
+              <% end %>
+            <% elsif diary.user == current_user %>
+              <%= render 'public/homes/index', diary: diary %>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <%= render 'public/homes/index', diary: diary %>
+          <% else diary.public_range == 'everyone' && diary.user.is_public == true %>
+            <%= render 'public/homes/index', diary: diary %>
+          <% end %>
         <% end %>
         <%= paginate @diaries %>
       <% else %>

@@ -6,10 +6,10 @@ class Public::SearchesController < ApplicationController
     if @range == 'User'
       @users = User.looks(params[:word])
       unless @users.blank?
-        @users = Kaminari.paginate_array(@users).page(params[:page]).per(1)
+        @users = Kaminari.paginate_array(@users).page(params[:page]).per(20)
       end
     elsif @range == 'Diary'
-      @diaries = Diary.looks(params[:word]).page(params[:page]).per(1)
+      @diaries = Diary.looks(params[:word]).page(params[:page]).per(20)
     end
   end
 end

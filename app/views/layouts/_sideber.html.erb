@@ -1,34 +1,36 @@
 <div class="sidebar-fixed pl-3">
 
   <% if user_signed_in? %>
+    <div>
+      <%= link_to user_path(current_user.name_id) do %>
+        <%= image_tag current_user.get_image(100,100), class: 'rounded-circle' %>
+      <% end %>
+    </div>
+
     <div class="pb-5">
       <%= link_to history_user_diaries_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
         <i class="fas fa-history"></i>History
       <% end %>
     </div>
 
-  <div class="pb-3">
-    絞り込み
-  </div>
-  <div class="pb-3">
-    <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
-  </div>
-  <div class="pb-3">
-    <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
-  </div>
-  <div class="pb-3">
-    <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
-  </div>
+    <div class="pb-3">
+      絞り込み
+    </div>
+    <div class="pb-3">
+      <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
+    </div>
+    <div class="pb-3">
+      <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
+    </div>
+    <div class="pb-3">
+      <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
+    </div>
 
+  <% elsif admin_signed_in? %>
+
+  <% else %>
   <% end %>
-  <div>
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.select :range, options_for_select([['User'], ['Diary']]) %>
-      <%= f.text_field :word %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
-    <% end %>
-  </div>
 
-  <button type="button" class="btn btn-primary mb-8" data-toggle="modal" data-target="#searchModal">カレンダー検索</button>
+  <!--<button type="button" class="btn btn-primary mb-8" data-toggle="modal" data-target="#searchModal">カレンダー検索</button>-->
 
 </div>
