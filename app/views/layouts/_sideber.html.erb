@@ -1,4 +1,12 @@
 <div class="sidebar-fixed pl-3">
+
+  <% if user_signed_in? %>
+    <div class="pb-5">
+      <%= link_to history_user_diaries_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+        <i class="fas fa-history"></i>History
+      <% end %>
+    </div>
+
   <div class="pb-3">
     絞り込み
   </div>
@@ -11,7 +19,8 @@
   <div class="pb-3">
     <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
   </div>
-  
+
+  <% end %>
   <div>
     <%= form_with url: search_path, local: true, method: :get do |f| %>
       <%= f.select :range, options_for_select([['User'], ['Diary']]) %>

@@ -13,8 +13,11 @@
     </div>
 
     <div class="mx-auto">
-      <% if user_signed_in? %>
-        <%= link_to 'History', history_user_diaries_path(current_user.name_id), class: 'btn btn-lg rounded-pill' %>
+      <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
+        <%= f.text_field :word, placeholder: 'キーワード検索' %>
+        <%= button_tag type: 'submit', class: 'search-submit' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
       <% end %>
     </div>
 

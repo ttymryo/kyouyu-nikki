@@ -10,7 +10,9 @@
         <div class="col-11">
           <div class="row">
             <div class="col-10 pb-2">
-              <%= @diary.user.name %> @<%= @diary.user.name_id %>
+              <%= link_to user_path(@diary.user.name_id), class: 'text-secondary text-decoration-none' do %>
+                <%= @diary.user.name %> @<%= @diary.user.name_id %>
+              <% end %>
             </div>
             <div class="col-2">
               <%= @diary.created_at.strftime('%Y/%m/%d') %>
