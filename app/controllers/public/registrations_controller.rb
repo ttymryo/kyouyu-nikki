@@ -16,8 +16,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
       keys: [
         :name, :name_id, :email,
       ])
-
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name_id])
+    
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name_id, :email])
   end
 
   # GET /resource/sign_up

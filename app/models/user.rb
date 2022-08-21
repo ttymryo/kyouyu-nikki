@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         authentication_keys: [:name_id]
+         authentication_keys: [:email, :name_id]
 
   validates :name, presence: true
   validates :name_id, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
