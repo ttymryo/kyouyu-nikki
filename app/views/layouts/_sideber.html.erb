@@ -1,30 +1,42 @@
 <div class="sidebar-fixed pl-3">
 
   <% if user_signed_in? %>
-    <div>
+    <div class="pb-3">
       <%= link_to user_path(current_user.name_id) do %>
         <%= image_tag current_user.get_image(100,100), class: 'rounded-circle' %>
       <% end %>
     </div>
 
-    <div class="pb-5">
-      <%= link_to history_user_diaries_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-        <i class="fas fa-history"></i>History
+    <div class="pb-3">
+      <%= link_to user_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+        <i class="fas fa-user"></i>My Page
+      <% end %>
+    </div>
+    <div class="pb-3">
+      <%= link_to root_path, class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+        <i class="fas fa-home"></i>Home
       <% end %>
     </div>
 
     <div class="pb-3">
-      絞り込み
+      <%= link_to history_user_diaries_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+        <i class="fas fa-history"></i>History
+      <% end %>
     </div>
-    <div class="pb-3">
-      <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
-    </div>
-    <div class="pb-3">
-      <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
-    </div>
-    <div class="pb-3">
-      <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
-    </div>
+    <% if controller.controller_name == 'homes' %>
+      <div class="pb-3">
+        絞り込み
+      </div>
+      <div class="pb-3">
+        <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
+      </div>
+      <div class="pb-3">
+        <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
+      </div>
+      <div class="pb-3">
+        <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
+      </div>
+    <% end %>
 
   <% elsif admin_signed_in? %>
 
