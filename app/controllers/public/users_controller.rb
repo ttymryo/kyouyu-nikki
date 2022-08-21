@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :custom_authenticate, only: [:edit, :update]
   before_action :public_range, only: [:follows, :followers]
 
   def show
@@ -45,14 +45,6 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name,:name_id,:email,:image,:introduction,:is_public)
   end
 
-  def ensure_correct_user
-    @user = User.find_by(name_id: params[:name_id])
-    unless @user == current_user
-      flash[:notice] = "アカウントが違うため編集できません"
-      redirect_to root_path
-    end
-  end
-  
   def public_range
     @user = User.find_by(name_id: params[:name_id])
     unless @user.is_public?

@@ -1,9 +1,14 @@
 class Public::HomesController < ApplicationController
-  before_action :authenticate_user!, only: [:sort]
+  before_action :custom_authenticate, only: [:sort]
 
   def top
-    @select_word = 'ホーム'
-    @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
+    if user_signed_in? || admin_signed_in?
+      @select_word = 'ホーム'
+      @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
+    end
+  end
+  
+  def about
   end
 
   def sort

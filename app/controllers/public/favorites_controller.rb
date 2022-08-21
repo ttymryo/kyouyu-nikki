@@ -1,5 +1,5 @@
 class Public::FavoritesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :custom_authenticate
 
   def create
     @diary = Diary.find(params[:diary_id])
