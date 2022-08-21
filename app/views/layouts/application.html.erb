@@ -11,8 +11,8 @@
   </head>
 
   <body>
-    <% if user_signed_in? || admin_signed_in? %>
     <%= render "layouts/header" %>
+    <% if user_signed_in? || admin_signed_in? %>
       <div class="row m-0 px-0 py-4">
         <div class="col-2 m-0 p-0">
           <%= render "layouts/sideber" %>
@@ -26,7 +26,7 @@
         </div>
       </div>
     <% else %>
-      <%= render 'public/homes/about' %>
+      <%= yield %>
     <% end %>
   </body>
 </html>

@@ -2,14 +2,14 @@ class Public::HomesController < ApplicationController
   before_action :authenticate_user!, only: [:sort]
 
   def top
-    @word = 'ホーム'
+    @select_word = 'ホーム'
     @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def sort
     #送られてきた値をそれぞれの処理で降順になるように配列をいじる
-    @word = params[:word]
-    case @word
+    @select_word = params[:word]
+    case @select_word
     when 'いいね' then
       @diaries = []
       current_user.favorites.each do |favorite|
@@ -38,13 +38,10 @@ class Public::HomesController < ApplicationController
       @diaries.flatten!
       @diaries = Kaminari.paginate_array(@diaries.sort_by{|diary| diary.id}.reverse).page(params[:page]).per(20)
     else
-      @word = 'ホーム'
+      @select_word = 'ホーム'
       @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
     end
     render :top
-  end
-
-  def about
   end
 
 end
