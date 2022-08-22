@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="col-11 card w-80 mx-auto mt-4 shadow-sm form-color">
+    <div class="card-body col-12 row justify-content-center mx-auto">
+      <div class="col-12">
+        <h3 class="text-center pb-3">プロフィール編集</h3>
+      </div>
+      <%= form_with model: @user, url: admin_user_path(@user), method: :patch, class: 'col-12 justify-content-center' do |f| %>
+        <%= render "public/shared/error_messages", resource: @user %>
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :image, '画像' %>
+          </div>
+          <div class="col-10">
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :name, '名前' %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :name_id, 'Name_ID' %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :introduction, '自己紹介' %>
+          </div>
+          <div class="col-10">
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :email, 'メールアドレス' %>
+          </div>
+          <div class="col-10">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :is_public, '公開設定', class: 'form-label' %>
+          </div>
+          <div class="col-10 btn-group" data-toggle="buttons" >
+            <label class="btn btn-outline-secondary" style="width: 33%">
+              <%= f.radio_button :is_public, true, class: 'btn_icon_none' %>公開
+            </label>
+            <label class="btn btn-outline-secondary" style="width: 33%">
+              <%= f.radio_button :is_public, false, class: 'btn_icon_none' %>非公開
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-2">
+            <%= f.label :is_deleted, '凍結設定', class: 'form-label' %>
+          </div>
+          <div class="col-10 btn-group" data-toggle="buttons" >
+            <label class="btn btn-outline-secondary" style="width: 33%">
+              <%= f.radio_button :is_deleted, true, class: 'btn_icon_none' %>凍結
+            </label>
+            <label class="btn btn-outline-secondary" style="width: 33%">
+              <%= f.radio_button :is_deleted, false, class: 'btn_icon_none' %>解除
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "保存", class: 'btn btn-outline-primary btn-block rounded-pill' %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
