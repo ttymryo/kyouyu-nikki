@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  
+  def user_acteve?
+    if current_user.is_deleted?
+      render 'public/users/delete'
+    end
+  end
 
   def after_sign_in_path_for(resource)
     case resource
