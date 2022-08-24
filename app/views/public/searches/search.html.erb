@@ -45,8 +45,6 @@
                       フォローされています
                     <% end %>
                   </div>
-                <% elsif admin_signed_in? %>
-                  <%= link_to '設定', edit_admin_user_path(user), data: {"turbolinks" => false}, class: 'btn btn-outline-success rounded-pill' %>
                 <% end %>
               </div>
               <div class="col-10 ml-auto py-3">
@@ -66,8 +64,6 @@
             <% elsif diary.user == current_user %>
               <%= render 'public/homes/index', diary: diary %>
             <% end %>
-          <% elsif admin_signed_in? %>
-            <%= render 'public/homes/index', diary: diary %>
           <% else diary.public_range == 'everyone' && diary.user.is_public == true %>
             <%= render 'public/homes/index', diary: diary %>
           <% end %>

@@ -13,6 +13,10 @@ class Public::SearchesController < ApplicationController
     elsif @range == 'Diary'
       @diaries = Diary.looks(params[:word]).page(params[:page]).per(20).order(created_at: :desc)
     end
+
+    if admin_signed_in?
+      render 'admin/searches/search'
+    end
   end
 
   def signed_in?

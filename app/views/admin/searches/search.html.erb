@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="col-10 row mx-auto">
+    <h4 class="col-12">検索結果：<%= @word %></h4>
+    <table class="table col-12" data-toggle="buttons">
+      <td class="text-center"><%= link_to search_path(word: @word, range: 'Diary') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'Diary' %>active<% end %>">Diary</button><% end %></td>
+      <td class="text-center"><%= link_to search_path(word: @word, range: 'User') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'User' %>active<% end %>">User</button><% end %></td>
+    </table>
+    <div class="container p-0 jscroll-div">
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <%= render 'admin/users/index', user: user %>
+        <% end %>
+        <%= paginate @users %>
+      <% elsif @diaries.present? %>
+        <% @diaries.each do |diary| %>
+          <%= render 'admin/homes/index', diary: diary %>
+        <% end %>
+        <%= paginate @diaries %>
+      <% else %>
+        <h3>該当なし</h3>
+      <% end %>
+    </div>
+  </div>
+</div>
