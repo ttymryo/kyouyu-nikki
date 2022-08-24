@@ -1,4 +1,6 @@
 class Public::SearchesController < ApplicationController
+  before_action :signed_in?
+
   def search
     @word = params[:word]
     @range = params[:range]
@@ -10,6 +12,12 @@ class Public::SearchesController < ApplicationController
       end
     elsif @range == 'Diary'
       @diaries = Diary.looks(params[:word]).page(params[:page]).per(20).order(created_at: :desc)
+    end
+  end
+
+  def signed_in?
+    unless user_signed_in? || admin_signed_in?
+      redirect_to root_path
     end
   end
 end

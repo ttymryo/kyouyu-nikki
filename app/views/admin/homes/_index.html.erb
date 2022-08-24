@@ -1,4 +1,4 @@
-<%= link_to user_diary_path(diary.user.name_id,diary), class: 'text-secondary text-decoration-none' do %>
+<%= link_to admin_diary_path(diary), class: 'text-secondary text-decoration-none' do %>
   <div class="card card-index w-80 mx-auto mt-4 <% if diary.emotion == 'unhappy'%>border-primary<% elsif diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>" >
     <div class="card-body">
       <div class="row">
