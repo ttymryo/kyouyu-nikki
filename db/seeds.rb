@@ -13,5 +13,5 @@ user = User.find_by(name_id: 'testuser')
 
 Diary.create(user_id: user.id, body: 'てすと！全員コメントおｋ', emotion: 0, public_range: 2, add_commented: true)
 Diary.create(user_id: user.id, body: 'てすと！全員コメントだめ', emotion: 0, public_range: 2, add_commented: false)
-Diary.create(user_id: user.id, body: 'てすと！FFコメントだめ', emotion: 0, public_range: user.id, add_commented: false)
+Diary.create(user_id: user.id, body: 'てすと！FFコメントだめ', emotion: 0, public_range: 1, add_commented: false)
 Diary.create(user_id: user.id, body: 'てすと！自分コメントだめ', emotion: 0, public_range: 0, add_commented: false)
