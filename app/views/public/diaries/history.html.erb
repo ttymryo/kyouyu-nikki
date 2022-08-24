@@ -42,17 +42,20 @@
             <div class="col-11">
               <div class="col-12 row">
                 <div class="col-11 p-0">
-                  <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-decoration-none text-body' do %>
-                    <div class="col-12 p-0 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% end %>">
-                      <%= diary.body %>
+                  <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-dark' do %>
+                    <%= diary.created_at.strftime("%H:%M") %>
+                    <div class="col-12 p-0 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% else %>text-dark<% end %>">
+                      <%= simple_format(h(diary.body)) %>
                     </div>
                   <% end %>
                 </div>
-                <div style="width: 30px">
+                <div class="ml-3">
                   <div class="favorite_btn_<%= diary.id %> text-secondary favorite" style="width: 40px">
                     <%= render 'public/favorites/favorite', diary: diary %>
                   </div>
-                    <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+                    <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-secondary' do %>
+                      <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+                    <% end %>
                 </div>
               </div>
             </div>
