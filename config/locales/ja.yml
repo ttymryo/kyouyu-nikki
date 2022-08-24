@@ -19,7 +19,7 @@ ja:
     attributes:
       user:
         name: '名前'
-        name_id: 'Name_id'
+        name_id: 'ユーザーID'
         introduction: '自己紹介'
         email: 'メールアドレス'
 
