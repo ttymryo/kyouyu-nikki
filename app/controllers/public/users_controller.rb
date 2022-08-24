@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find_by!(name_id: params[:name_id])
     # ゲストユーザーの時は保存しない
-    if @user.name_id == 'guestuser'
+    if @user.name_id == 'user'
       redirect_to user_path(@user.name_id)
     else
       if @user.update(user_params)
