@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
         @users = Kaminari.paginate_array(@users).page(params[:page]).per(20)
       end
     elsif @range == 'Diary'
-      @diaries = Diary.looks(params[:word]).page(params[:page]).per(20)
+      @diaries = Diary.looks(params[:word]).page(params[:page]).per(20).order(created_at: :desc)
     end
   end
 end
