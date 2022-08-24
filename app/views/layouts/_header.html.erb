@@ -22,7 +22,7 @@
       <% end %>
     </div>
 
-    <ul class="navbar-nav ml-auto rounded-pill" style="background-color: #fff">
+    <ul class="navbar-nav ml-auto px-2 rounded-pill" style="background-color: #fff">
       <% if user_signed_in? %>
         <li>
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
