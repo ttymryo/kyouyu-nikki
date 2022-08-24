@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/home' => 'homes#top'
-    resources :users
+    resources :users, except: [:new, :destroy, :create]
   end
 
   scope module: :public do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :users, path: '/', param: :name_id do
       resources :diaries, except: [:index, :create] do
         resource :favorites, only: [:create, :destroy]
-        resources :comments
+        resources :comments, only: [:create, :destroy]
         collection do
           get :history
           post 'new', to: 'diaries#create'
