@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :user,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
+  devise_for :user,skip: [:passwords, :registrations], controllers: {
     sessions: 'public/sessions'
   }
 
   devise_scope :user do
+    get 'user/sign_up', to: 'public/registrations#new', as: :new_user_registration
+    post 'user/sign_up', to: 'public/registrations#create', as: :user_registration
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
