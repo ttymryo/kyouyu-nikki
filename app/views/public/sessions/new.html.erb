@@ -8,7 +8,7 @@
       　<%= render "public/shared/error_messages", resource: @user %>
         <div class="form-group row mb-4">
           <div class="col-2">
-            <%= f.label :name_id, 'Name_ID' %>
+            <%= f.label :name_id, 'ユーザーID' %>
           </div>
           <div class="col-10">
             <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", class: 'form-control' %>
@@ -42,7 +42,7 @@
 
         <div class="col-12 row mx-auto my-4 p-0">
           <div class="col-12 p-2">
-            <%= f.submit "ログイン", class: 'btn btn-outline-success btn-block mx-auto rounded-pill' %>
+            <%= f.submit "ログイン", class: 'btn btn-outline-primary btn-block mx-auto rounded-pill' %>
           </div>
         </div>
         <div class="row col-12 mx-auto p-0">
