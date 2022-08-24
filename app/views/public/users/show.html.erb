@@ -11,7 +11,7 @@
               <strong><%= @user.name %></strong> @<%= @user.name_id %> <span class="border p-1 rounded-pill"><% if @user.is_public? %>公開<% else %>非公開<% end %></span>
             </div>
             <div>
-              <% if @user.is_public? %>
+              <% if @user.is_public? || @user == current_user %>
                 <%= link_to follows_user_path(@user.name_id) do %>
                   フォロー<%= @user.following_user.count %>
                 <% end %>
@@ -20,9 +20,9 @@
                   フォロワー<%= @user.follower_user.count %>
                 <% end %>
               <% else %>
-                フォロワー<%= @user.follower_user.count %>
-                |
                 フォロー<%= @user.following_user.count %>
+                |
+                フォロワー<%= @user.follower_user.count %>
               <% end %>
             </div>
           </div>
@@ -43,7 +43,11 @@
             <% end %>
           </div>
           <div class="col-12 row pt-3">
-            <%= @user.introduction %>
+            <% if @user.is_deleted? %>
+              <h4>このアカウントは凍結されています。</h4>
+            <% else %>
+              <%= @user.introduction %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -54,12 +58,12 @@
           <% if user_signed_in? %>
             <% if diary.user == current_user %>
               <%= render 'public/homes/index', diary: diary %>
-            <% elsif diary.user.is_public? %>
+            <% elsif @user.is_public? %>
               <% if diary.public_range == 'everyone' || (current_user.ff?(diary.user) && diary.public_range == 'in_ff') %>
                 <%= render 'public/homes/index', diary: diary %>
               <% end %>
             <% end %>
-          <% else %>
+          <% elsif @user.is_public? && diary.public_range == 'everyone' %>
             <%= render 'public/homes/index', diary: diary %>
           <% end %>
         <% end %>

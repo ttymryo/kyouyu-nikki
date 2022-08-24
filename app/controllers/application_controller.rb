@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :user_acteve?
 
   def custom_authenticate
     if admin_signed_in?
@@ -19,10 +20,10 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  
+
   def user_acteve?
-    if current_user.is_deleted?
-      render 'public/users/delete'
+    if user_signed_in? && current_user.is_deleted?
+      render "public/users/delete"
     end
   end
 

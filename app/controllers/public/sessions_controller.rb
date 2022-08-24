@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  skip_before_action :user_acteve?, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
 
   def guest_sign_in

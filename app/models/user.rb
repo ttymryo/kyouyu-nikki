@@ -8,7 +8,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name_id, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
   validates :introduction, length: { maximum: 255 }
-  validates :is_public, presence: true, inclusion: {in: [true, false]}
+  validates :is_public, inclusion: {in: [true, false]}
+  validates :is_deleted, inclusion: {in: [true, false]}
 
   has_one_attached :image
 

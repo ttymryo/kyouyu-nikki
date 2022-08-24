@@ -16,6 +16,9 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(params_user)
+      if @user.is_deleted?
+        @user.update(is_public: false)
+      end
       redirect_to admin_user_path(@user)
     else
       render :edit
