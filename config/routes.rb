@@ -26,11 +26,12 @@ Rails.application.routes.draw do
     get '/search' => 'searches#search'
 
     resources :users, path: '/', param: :name_id do
-      resources :diaries do
+      resources :diaries, except: [:index, :create] do
         resource :favorites, only: [:create, :destroy]
         resources :comments
         collection do
           get :history
+          post 'new', to: 'diaries#create'
         end
       end
       member do

@@ -3,9 +3,6 @@ class Public::DiariesController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit, :destroy]
   before_action :public_range, only: [:show]
 
-  def index
-  end
-
   def show
     @diary = Diary.find(params[:id])
     @comment = Comment.new
