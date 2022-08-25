@@ -1,4 +1,4 @@
-<div class="col-12 row justify-content-center">
+<div class="col-12 row mx-auto mt-3 justify-content-center">
   <div>
     <%= link_to history_user_diaries_path(current_user.name_id,month:@month.prev_year), class: 'text-left btn btn-sm btn-outline-primary rounded-circle' do %>
       <i class="fas fa-angle-double-left"></i>
@@ -25,39 +25,56 @@
 </div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 mx-auto">
-      <div class="card-list-container">
+    <div class="col-12 mx-auto">
+      <div class="container-fluid">
         <% if @diaries.present? %>
           <% @diaries.each do |diary| %>
             <% unless diary.created_at.day == @day %>
               <% unless @day == 0 %>
-                <div class="col-12 mb-4 mt-5 pt-3 border-bottom"></div>
+                <div class="col-10 col-md-12 mb-4 mt-5 pt-3 border-bottom"></div>
               <% end %>
-              <div class="col-2 pt-3">
-                <div class="date">
-                  <span class="date-year"><%= diary.created_at.year %></span><span class="date-month"><%= diary.created_at.month %></span><span class="date-day"><%= diary.created_at.day %></span>
-                </div>
+              <div class="sm col-2 py-3 d-md-none">
+                <%= render 'date', diary: diary %>
+              </div>
+              <div class="md col-2 pt-3 d-none d-md-block">
+                <%= render 'date', diary: diary %>
               </div>
             <% end %>
-            <div class="col-12 row m-4 pt-3 justify-content-end">
-              <div class="col-11">
-                <div class="col-12 row">
-                  <div class="col-11 p-0">
+            <div class="col-12 row m-0 m-md-4 pt-3 justify-content-md-end">
+              <div class="col-12 col-md-11 p-0">
+                <div class="col-12 row p-0 m-0">
+                  <div class="col-12 col-md-11 p-0">
                     <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-dark' do %>
-                      <%= diary.created_at.strftime("%H:%M") %>
-                      <div class="col-12 p-0 <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% else %>text-dark<% end %>">
+                      <div class="col-12 p-0">
+                        <%= diary.created_at.strftime("%H:%M") %>
+                      </div>
+                      <div class="col-12 p-0 text-break <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% else %>text-dark<% end %>">
                         <%= simple_format(h(diary.body)) %>
                       </div>
                     <% end %>
                   </div>
-                  <div class="ml-3">
-                    <div class="favorite_btn_<%= diary.id %> text-secondary favorite" style="width: 40px">
+
+                  <div class="col-1 d-none d-md-block">
+                    <div class="favorite_btn_<%= diary.id %> text-secondary favorite" style="width: 30px">
                       <%= render 'public/favorites/favorite', diary: diary %>
                     </div>
-                    <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-secondary' do %>
-                      <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
-                    <% end %>
+                    <div style="width: 30px">
+                      <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-secondary' do %>
+                        <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+                      <% end %>
+                    </div>
                   </div>
+                  <div class="col-12 row m-0 p-0 justify-content-end d-md-none">
+                    <div class="favorite_btn_<%= diary.id %> text-secondary favorite mr-3" style="width: 30px">
+                      <%= render 'public/favorites/favorite', diary: diary %>
+                    </div>
+                    <div style="width: 30px">
+                      <%= link_to user_diary_path(current_user.name_id,diary), class: 'text-secondary' do %>
+                        <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+                      <% end %>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

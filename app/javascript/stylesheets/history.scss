@@ -1,6 +1,19 @@
 .date {
-	margin-bottom: -80px;
+	width: 50px;
 }
+
+.md {
+	.date {
+		margin-bottom: -80px;
+	}
+}
+
+.sm {
+	.date {
+		margin-bottom: -15px;
+	}
+}
+
 .date-year::after {
 	content: "-";
 }
