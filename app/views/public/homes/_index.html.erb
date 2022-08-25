@@ -2,39 +2,60 @@
   <div class="card card-index w-80 mx-auto mt-4 <% if diary.emotion == 'unhappy'%>border-primary<% elsif diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>" >
     <div class="card-body">
       <div class="row mx-auto justify-content-center">
-        <div class="col-1 d-none d-lg-block pr-1">
+        <div class="col-1 d-none d-xl-block pl-0 ">
           <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
         </div>
-        <div class="col-sm-12 col-lg-11 row p-0">
+        <div class="col-sm-12 col-xl-11 row p-0">
 
-          <div class="col-2 col-sm-1 col-md-1 p-0 d-lg-none">
+          <div class="col-2 col-sm-1 col-md-1 col-lg-1 p-0 d-xl-none">
             <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
           </div>
 
           <div class="col-9 d-none d-lg-block">
             <strong><%= diary.user.name %></strong> @<%= diary.user.name_id %>
           </div>
-          <div class="col-9 col-sm-9 d-lg-none">
+          <div class="col-8 col-sm-9 d-lg-none">
             <strong><%= diary.user.name %></strong><br>
             @<%= diary.user.name_id %>
           </div>
 
-          <div class="col-md-3 col-sm-12 text-right p-0">
+          <div class="col-2 col-md-2 col-lg-2 col-xl-3 text-right p-0 d-none d-sm-block">
             <%= diary.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="col-2 text-right p-0 d-sm-none">
+            <%= diary.created_at.strftime('%Y') %><br>
+            <%= diary.created_at.strftime('%m/%d') %>
           </div>
 
           <div class="col-12 mt-3 mb-4">
             <%= diary.body.truncate(200) %>
           </div>
 
-          <div class="col-12 row p-0 m-0">
-            <div class="col-4">
+          <div class="col-12 d-none d-sm-block">
+            <div class="row p-0 m-0">
+              <div class="col-4">
+              </div>
+              <div class="col-2 text-right">
+                <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+              </div>
+              <div class="col-6 p-0">
+                <p class="text-right m-0 my-auto" style="font-size: 13px">コメント：<%= diary.add_commented_i18n %> | 公開設定：<%= diary.public_range_i18n %></p>
+              </div>
             </div>
-            <div class="col-2 text-right">
-              <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
-            </div>
-            <div class="col-6 p-0">
-              <p class="text-right m-0">コメント：<%= diary.add_commented_i18n %> | 公開設定：<%= diary.public_range_i18n %></p>
+          </div>
+          <div class="col-12 d-sm-none">
+            <div class="row p-0 m-0">
+              <div class="col-3">
+              </div>
+              <div class="col-3 text-right mt-auto">
+                <i class="far fa-comment mr-1"></i><%= diary.comments.count %>
+              </div>
+              <div class="col-6 p-0">
+                <p class="text-right m-0" style="font-size: 10px">
+                  コメント：<%= diary.add_commented_i18n %><br>
+                  公開設定：<%= diary.public_range_i18n %>
+                </p>
+              </div>
             </div>
           </div>
 
