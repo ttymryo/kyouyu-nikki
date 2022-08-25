@@ -12,7 +12,7 @@
       <% end %>
     </div>
 
-    <div class="mx-auto">
+    <div class="mx-auto d-none d-lg-block">
       <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
         <%= f.text_field :word, value: @word, placeholder: 'キーワード検索' %>
         <%= f.hidden_field :range, value: 'Diary' %>
@@ -22,7 +22,58 @@
       <% end %>
     </div>
 
-    <ul class="navbar-nav ml-auto px-3 rounded-pill" style="background-color: #fff">
+    <ul class="navbar-nav ml-auto p-2 rounded-pill d-none d-lg-block" style="background-color: #fff">
+      <% if user_signed_in? %>
+        <li class="list-inline-item">
+          <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to '新規投稿', new_user_diary_path(current_user.name_id), class: "btn rounded-pill", data: {"turbolinks" => false} %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill" %>
+        </li>
+      <% elsif admin_signed_in? %>
+        <li class="list-inline-item">
+          <%= link_to 'ユーザー', admin_users_path, class: 'btn rounded-pill' %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn rounded-pill' %>
+        </li>
+      <% else %>
+        <li class="list-inline-item">
+          <%= link_to '新規登録', new_user_registration_path, class: "btn rounded-pill", data: {"turbolinks" => false} %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn rounded-pill", method: :post %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to 'ログイン', new_user_session_path, class: "btn rounded-pill" %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto p-2 rounded-pill d-lg-none" style="background-color: #fff">
+      <div>
+        <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </ul>
+    <ul class="collapse col-12" id="collapseSearch">
+      <div class="">
+        <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
+          <%= f.text_field :word, value: @word, placeholder: 'キーワード検索' %>
+          <%= f.hidden_field :range, value: 'Diary' %>
+          <%= button_tag type: 'submit', class: 'search-submit' do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </ul>
+    <ul class="collapse col-12 list-unstyled" id="collapseHeader">
       <% if user_signed_in? %>
         <li>
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
