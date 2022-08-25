@@ -19,7 +19,7 @@
     </script>
   </head>
 
-  <body>
+  <body style="min-width: 360px;">
     <%= render "layouts/header" %>
     <% if (user_signed_in? && current_user.is_deleted == false) || admin_signed_in? %>
       <div class="row col-md-12 col-lg-10 m-0 mx-auto px-0 py-4">
