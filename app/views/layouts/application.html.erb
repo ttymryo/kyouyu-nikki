@@ -21,7 +21,7 @@
 
   <body>
     <%= render "layouts/header" %>
-    <% if (user_signed_in? && current_user.is_deleted == false) || admin_signed_in?  %>
+    <% if (user_signed_in? && current_user.is_deleted == false) || admin_signed_in? %>
       <div class="row col-md-12 col-lg-10 m-0 mx-auto px-0 py-4">
         <div class="col-lg-2 col-md-12 m-0 p-0">
           <%= render "layouts/sideber" %>
@@ -36,6 +36,13 @@
       </div>
     <% else %>
       <%= yield %>
+    <% end %>
+    <% if user_signed_in? && current_user.is_deleted == false %>
+      <%= link_to new_user_diary_path(current_user.name_id), class: 'new-diary-btn btn rounded-circle', style: 'background-color: #f4e1cd;' do %>
+        <div class="p-3">
+          <i class="fas fa-plus" style="scale: 1.5"></i>
+        </div>
+      <% end %>
     <% end %>
   </body>
 </html>

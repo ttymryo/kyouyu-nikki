@@ -84,3 +84,13 @@
 .text-line:after {
   margin-left: 1em; /* 文字の左隣 */
 }
+
+.new-diary-btn {
+  position:fixed;
+  right:50px;
+  bottom:50px;
+  opacity:0.7;
+}
+.new-diary-btn:hover{
+  opacity:1;
+}
