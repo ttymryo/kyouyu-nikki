@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/home' => 'homes#top'
     resources :diaries, except: [:new, :create, :index]
-    resources :users, except: [:new, :destroy, :create]
+    resources :users, except: [:new, :create]
   end
 
   scope module: :public do

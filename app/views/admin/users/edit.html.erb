@@ -83,6 +83,10 @@
           <%= f.submit "保存", class: 'btn btn-outline-primary btn-block rounded-pill' %>
         </div>
 
+        <div class="form-group">
+          <%= link_to 'ユーザー削除', admin_user_path, method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger btn-block rounded-pill' %>
+        </div>
+
       <% end %>
     </div>
   </div>
