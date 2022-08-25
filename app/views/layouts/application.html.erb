@@ -38,10 +38,12 @@
       <%= yield %>
     <% end %>
     <% if user_signed_in? && current_user.is_deleted == false %>
-      <%= link_to new_user_diary_path(current_user.name_id), class: 'new-diary-btn btn rounded-circle', style: 'background-color: #f4e1cd;' do %>
-        <div class="p-3">
-          <i class="fas fa-plus" style="scale: 1.5"></i>
-        </div>
+      <% unless controller.controller_name == "diaries" && (controller.action_name == "new" || controller.action_name == "edit")  %>
+        <%= link_to new_user_diary_path(current_user.name_id), class: 'new-diary-btn btn rounded-circle', style: 'background-color: #f4e1cd;' do %>
+          <div class="p-3">
+            <i class="fas fa-plus" style="scale: 1.5"></i>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </body>
