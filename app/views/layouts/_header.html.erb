@@ -28,7 +28,7 @@
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
         </li>
         <li>
-          <%= link_to 'ツイート', new_user_diary_path(current_user.name_id), class: "btn rounded-pill", data: {"turbolinks" => false} %>
+          <%= link_to '新規投稿', new_user_diary_path(current_user.name_id), class: "btn rounded-pill", data: {"turbolinks" => false} %>
         </li>
         <li>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill" %>

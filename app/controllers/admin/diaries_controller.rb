@@ -12,7 +12,7 @@ class Admin::DiariesController < ApplicationController
   def update
     @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
-      redirect_to root_path
+      redirect_to admin_diary_path(@diary)
     else
       render :edit
     end
