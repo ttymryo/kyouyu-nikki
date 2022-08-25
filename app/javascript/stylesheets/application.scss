@@ -28,8 +28,11 @@
 .favorite-position{
   position: relative;
   left: 10%;
-  bottom: 45px;
-  margin-bottom: -30px;
+  bottom: 61px;
+  margin-bottom: -56px;
+  div {
+    padding: 1em;
+  }
 }
 
 .favorite:hover{
@@ -86,6 +89,7 @@
 }
 
 .new-diary-btn {
+  background-color: #f4e1cd;
   position:fixed;
   right:50px;
   bottom:50px;
