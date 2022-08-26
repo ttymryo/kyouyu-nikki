@@ -9,7 +9,7 @@
       <div class="container jscroll-div">
         <% if @users.present? %>
           <% @users.each do |user| %>
-            <div class="col-12 mx-auto my-3 border-bottom">
+            <div class="col-12 mx-auto my-3 pb-2 border-bottom">
               <%= render 'public/users/index', user: user %>
             </div>
           <% end %>
