@@ -64,11 +64,13 @@ class Public::DiariesController < ApplicationController
       redirect_to root_path, alert: '投稿が見つかりません'
     end
     @diary = Diary.find(params[:id])
-    if @diary.public_range_i18n == '自分だけ'
-      redirect_to root_path, alert: '投稿が見つかりません。'
-    elsif @diary.public_range_i18n == 'FF内'
-      unless @diary.user.ff?(current_user)
+    unless current_user == @diary.user
+      if @diary.user && @diary.public_range_i18n == '自分だけ'
         redirect_to root_path, alert: '投稿が見つかりません。'
+      elsif @diary.public_range_i18n == 'FF内'
+        unless @diary.user.ff?(current_user)
+          redirect_to root_path, alert: '投稿が見つかりません。'
+        end
       end
     end
   end
