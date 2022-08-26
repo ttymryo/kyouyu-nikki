@@ -24,6 +24,12 @@ class Admin::DiariesController < ApplicationController
     redirect_to root_path
   end
 
+  def comments
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to request.referer
+  end
+
   private
 
   def diary_params

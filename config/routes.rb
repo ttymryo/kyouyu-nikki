@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get '/home' => 'homes#top'
     resources :diaries, except: [:new, :create, :index]
     resources :users, except: [:new, :create]
+    delete '/comments/:id', to: 'diaries#comments', as: :comment
   end
 
   scope module: :public do

@@ -6,8 +6,7 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       redirect_to request.referer
     else
-      @diary = Diary.find(params[:diary_id])
-      render 'public/diaries/show'
+      redirect_to request.referer
     end
   end
 
