@@ -56,36 +56,36 @@
     <% if user_signed_in? %>
       <div class="col-12 row mx-auto justify-content-around">
 
-        <div class="">
+        <div>
           <%= link_to user_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
             <i class="fas fa-user"></i>
           <% end %>
         </div>
-        <div class="">
+        <div>
           <%= link_to root_path, class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
             <i class="fas fa-home"></i>
           <% end %>
         </div>
 
-        <div class="">
+        <div>
           <%= link_to history_user_diaries_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
             <i class="fas fa-history"></i>
           <% end %>
         </div>
         <% if controller.controller_name == 'homes' %>
-          <div class="">
+          <div>
             <button class="btn btn-lg btn-outline-secondary rounded-pill" type="button" data-toggle="collapse" data-target="#collapseSidebar" aria-expanded="false" aria-controls="collapseSidebar">
               <i class="fas fa-bars"></i>
             </button>
           </div>
           <div class="collapse w-100 row justify-content-around pt-2" id="collapseSidebar">
-            <div class="">
+            <div>
               <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
             </div>
-            <div class="">
+            <div>
               <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
             </div>
-            <div class="">
+            <div>
               <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
               </div>
           </div>

@@ -8,6 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5XCTLQJ7V"></script>
     <script>
@@ -21,30 +22,39 @@
 
   <body style="min-width: 360px;">
     <%= render "layouts/header" %>
-    <% if (user_signed_in? && current_user.is_deleted == false) || admin_signed_in? %>
-      <div class="row col-md-12 col-lg-10 m-0 mx-auto px-0 py-4">
-        <div class="col-lg-2 col-md-12 m-0 p-0">
-          <%= render "layouts/sideber" %>
+    <div id="flash">
+      <% if flash[:notice] %>
+        <div class="text-center position-absolute w-100 alert alert-info flash">
+          <%= flash[:notice] %>
         </div>
-        <div class="col-lg-10 col-md-12 m-0 mx-auto p-0">
-          <% if notice.present? || alert.present? %>
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-          <% end %>
-          <%= yield %>
+      <% elsif flash[:alert] %>
+        <div class="text-center position-absolute w-100 alert alert-danger flash">
+          <%= flash[:alert] %>
         </div>
-      </div>
-    <% else %>
-      <%= yield %>
-    <% end %>
-    <% if user_signed_in? && current_user.is_deleted == false %>
-      <% unless controller.controller_name == "diaries" && (controller.action_name == "new" || controller.action_name == "edit")  %>
-        <%= link_to new_user_diary_path(current_user.name_id), data: {"turbolinks" => false}, class: 'new-diary-btn btn rounded-circle' do %>
-          <div class="p-3">
-            <i class="fas fa-plus" style="scale: 1.5"></i>
+      <% end %>
+    </div>
+    <main>
+      <% if (user_signed_in? && current_user.is_deleted == false) || admin_signed_in? %>
+        <div class="row col-md-12 col-lg-10 m-0 mx-auto px-0 py-4">
+          <div class="col-lg-2 col-md-12 m-0 p-0">
+            <%= render "layouts/sideber" %>
           </div>
+          <div class="col-lg-10 col-md-12 m-0 mx-auto p-0">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+      <% if user_signed_in? && current_user.is_deleted == false %>
+        <% unless controller.controller_name == "diaries" && (controller.action_name == "new" || controller.action_name == "edit")  %>
+          <%= link_to new_user_diary_path(current_user.name_id), data: {"turbolinks" => false}, class: 'new-diary-btn btn rounded-circle' do %>
+            <div class="p-3">
+              <i class="fas fa-plus" style="scale: 1.5"></i>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </main>
   </body>
 </html>

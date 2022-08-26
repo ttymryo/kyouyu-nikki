@@ -16,6 +16,13 @@ class Public::CommentsController < ApplicationController
     redirect_to user_diary_path(params[:user_name_id],params[:diary_id])
   end
 
+  def comment?
+    diary = Diary.find(params[:diary_id])
+    if diary.add_commented == false
+      redirect_to request.referer
+    end
+  end
+
   private
 
   def comment_params

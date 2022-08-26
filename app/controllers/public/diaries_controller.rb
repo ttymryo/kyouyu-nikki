@@ -19,7 +19,7 @@ class Public::DiariesController < ApplicationController
   def create
     @diary = current_user.diaries.new(diary_params)
     if @diary.save
-      redirect_to root_path
+      redirect_to user_diary_path(@diary.user.name_id,@diary)
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Public::DiariesController < ApplicationController
   def update
     @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
-      redirect_to root_path
+      redirect_to user_diary_path(@diary.user.name_id,@diary)
     else
       render :edit
     end

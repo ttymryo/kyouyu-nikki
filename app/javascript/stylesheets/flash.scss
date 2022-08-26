@@ -1,0 +1,12 @@
+.flash {
+  z-index:500;
+
+  animation: fadeout 1s linear 2s 1;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  0%   {  opacity:1;  }
+  100% {  opacity:0;  }
+}

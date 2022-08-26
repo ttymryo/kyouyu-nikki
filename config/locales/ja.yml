@@ -22,6 +22,10 @@ ja:
         name_id: 'ユーザーID'
         introduction: '自己紹介'
         email: 'メールアドレス'
+      diary:
+        body: '投稿内容'
+      comment:
+        body: 'コメント'
 
     errors:
       messages:
