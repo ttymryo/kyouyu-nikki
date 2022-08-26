@@ -1,13 +1,8 @@
 .search{
-  box-sizing: border-box;
-  position: relative;
   border: 2px solid #999;
-  display: block;
   padding: 3px 10px;
   border-radius: 20px;
-  height: 2.3em;
   width: 250px;
-  overflow: hidden;
   background-color: #fff;
 }
 .search input[type="text"]{

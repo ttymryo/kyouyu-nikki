@@ -14,9 +14,9 @@
 
     <div class="mx-auto d-none d-lg-block">
       <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
-        <%= f.text_field :word, value: @word, placeholder: 'キーワード検索' %>
-        <%= f.hidden_field :range, value: 'Diary' %>
-        <%= button_tag type: 'submit', class: 'search-submit ml-2' do %>
+        <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: '' %>
+        <%= f.hidden_field :range, value: 'Diary col-10' %>
+        <%= button_tag type: 'submit', class: 'search-submit col-1 ml-auto' do %>
           <i class="fas fa-search"></i>
         <% end %>
       <% end %>
@@ -62,12 +62,12 @@
         </button>
       </div>
     </ul>
-    <ul class="collapse col-12" id="collapseSearch">
-      <div class="">
+    <ul class="collapse col-12 col-lg-none" id="collapseSearch">
+      <div class="mx-auto row">
         <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
-          <%= f.text_field :word, value: @word, placeholder: 'キーワード検索' %>
-          <%= f.hidden_field :range, value: 'Diary' %>
-          <%= button_tag type: 'submit', class: 'search-submit' do %>
+          <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: '' %>
+          <%= f.hidden_field :range, value: 'Diary col-10' %>
+          <%= button_tag type: 'submit', class: 'search-submit col-1 ml-auto' do %>
             <i class="fas fa-search"></i>
           <% end %>
         <% end %>
