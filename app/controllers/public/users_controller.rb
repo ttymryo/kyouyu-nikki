@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :custom_authenticate, only: [:edit, :update]
-  before_action :public_range, only: [:follows, :followers]
+  before_action :is_public?, only: [:follows, :followers]
 
   def show
     @user = User.find_by!(name_id: params[:name_id])
@@ -45,7 +45,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name,:name_id,:email,:image,:introduction,:is_public)
   end
 
-  def public_range
+  def is_public?
     @user = User.find_by(name_id: params[:name_id])
     unless @user.is_public?
       redirect_to root_path

@@ -22,6 +22,7 @@ class Diary < ApplicationRecord
   
   def self.looks(word)
     @diary = Diary.where('body LIKE?', "%#{word}%")
+    return @diary
   end
 
 end

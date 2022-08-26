@@ -4,16 +4,16 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.diary_id = params[:diary_id]
     if @comment.save
-      redirect_to request.referer
+      redirect_to request.referer, notice: 'コメントを送信しました'
     else
-      redirect_to request.referer
+      redirect_to request.referer, alert: '送信に失敗しました'
     end
   end
 
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_to user_diary_path(params[:user_name_id],params[:diary_id])
+    redirect_to user_diary_path(params[:user_name_id],params[:diary_id]), notice: 'コメントを削除しました'
   end
 
   def comment?

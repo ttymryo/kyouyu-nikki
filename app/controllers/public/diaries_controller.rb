@@ -19,8 +19,9 @@ class Public::DiariesController < ApplicationController
   def create
     @diary = current_user.diaries.new(diary_params)
     if @diary.save
-      redirect_to user_diary_path(@diary.user.name_id,@diary)
+      redirect_to user_diary_path(@diary.user.name_id,@diary), notice: '投稿しました。'
     else
+      flash.now[:alert] = '投稿に失敗しました。'
       render :new
     end
   end
@@ -28,8 +29,9 @@ class Public::DiariesController < ApplicationController
   def update
     @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
-      redirect_to user_diary_path(@diary.user.name_id,@diary)
+      redirect_to user_diary_path(@diary.user.name_id,@diary), notice: '更新しました。'
     else
+      flash.now[:alert] = '保存できませんでした。'
       render :edit
     end
   end
@@ -37,7 +39,7 @@ class Public::DiariesController < ApplicationController
   def destroy
     diary = Diary.find(params[:id])
     diary.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: '投稿を削除しました。'
   end
 
   def edit
@@ -59,7 +61,15 @@ class Public::DiariesController < ApplicationController
   def public_range
     @user = User.find_by(name_id: params[:user_name_id])
     unless @user.is_public?
-      redirect_to root_path
+      redirect_to root_path, alert: '投稿が見つかりません'
+    end
+    @diary = Diary.find(params[:id])
+    if @diary.public_range_i18n == '自分だけ'
+      redirect_to root_path, alert: '投稿が見つかりません。'
+    elsif @diary.public_range_i18n == 'FF内'
+      unless @diary.user.ff?(current_user)
+        redirect_to root_path, alert: '投稿が見つかりません。'
+      end
     end
   end
 end

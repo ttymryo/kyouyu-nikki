@@ -68,6 +68,7 @@ class User < ApplicationRecord
     @user << User.where('name_id LIKE?', "%#{word}%")
     @user.flatten!
     @user.uniq!
+    return @user
   end
 
 end

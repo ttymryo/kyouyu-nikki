@@ -97,7 +97,7 @@
     </div>
     <div class="col-12 row pt-3 text-break d-none d-md-block">
       <% if user.is_deleted? %>
-        <h4>このアカウントは凍結されています。</h4>
+        <h5>このアカウントは凍結されています。</h5>
       <% else %>
         <%= user.introduction %>
       <% end %>
@@ -105,7 +105,7 @@
   </div>
   <div class="col-12 pt-3 text-break d-md-none">
     <% if user.is_deleted? %>
-      <h4>このアカウントは凍結されています。</h4>
+      <h6>このアカウントは凍結されています。</h6>
     <% else %>
       <%= user.introduction %>
     <% end %>

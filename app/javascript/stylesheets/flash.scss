@@ -1,11 +1,19 @@
 .flash {
   z-index:500;
+  transform: translateY(-60px);
+  opacity: 0;
 
-  animation: fadeout 1s linear 2s 1;
+  animation: popup 0.7s,popdown 0.7s 2.7s;
   animation-timing-function:ease-in-out;
   animation-fill-mode: forwards;
 }
 
+@keyframes popup {
+  100% { transform: translateY(0px); opacity: 1;  }
+}
+@keyframes popdown {
+  100% { transform: translateY(-60px); opacity: 0;  }
+}
 @keyframes fadeout {
   0%   {  opacity:1;  }
   100% {  opacity:0;  }
