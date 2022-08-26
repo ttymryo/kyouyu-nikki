@@ -6,65 +6,11 @@
         <td class="text-center"><%= link_to search_path(word: @word, range: 'Diary') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'Diary' %>active<% end %>">Diary</button><% end %></td>
         <td class="text-center"><%= link_to search_path(word: @word, range: 'User') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'User' %>active<% end %>">User</button><% end %></td>
       </table>
-      <div class="card-list-container jscroll-div">
+      <div class="container jscroll-div">
         <% if @users.present? %>
           <% @users.each do |user| %>
             <div class="col-12 mx-auto my-3 border-bottom">
-              <div class="row mt-2">
-
-                <div class="col-2 d-none d-md-block">
-                  <%= link_to user_path(user.name_id) do %>
-                    <%= image_tag user.get_image(100,100), class: 'rounded-circle'%>
-                  <% end %>
-                </div>
-                <div class="col-3 col-sm-2 d-md-none">
-                  <%= link_to user_path(user.name_id) do %>
-                    <%= image_tag user.get_image(50,50), class: 'rounded-circle'%>
-                  <% end %>
-                </div>
-
-                <div class="col-6 col-md-8 p-0">
-                  <div class="d-md-none">
-                    <%= link_to user_path(user.name_id), class: 'text-dark' do %>
-                      <strong><%= user.name %></strong> <span class="border p-1 rounded-pill"><% if user.is_public? %>公開<% else %>非公開<% end %></span><br>
-                      @<%= user.name_id %>
-                    <% end %>
-                  </div>
-                  <div class="d-none d-md-block">
-                    <%= link_to user_path(user.name_id), class: 'text-dark' do %>
-                      <strong><%= user.name %></strong> @<%= user.name_id %> <span class="border p-1 rounded-pill"><% if user.is_public? %>公開<% else %>非公開<% end %></span>
-                    <% end %>
-                  </div>
-                  <div>
-                    <%= link_to follows_user_path(user.name_id) do %>
-                      フォロー<%= user.following_user.count %>
-                    <% end %>
-                    |
-                    <%= link_to followers_user_path(user.name_id) do %>
-                      フォロワー<%= user.follower_user.count %>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="col-2 p-0 text-right">
-                  <% if user_signed_in? && user == current_user %>
-                    <%= link_to 'プロフィール設定', edit_user_path(user.name_id), data: {"turbolinks" => false}, class: 'btn btn-outline-success rounded-pill' %>
-                  <% elsif current_user != user && user_signed_in? %>
-                    <% if current_user.following?(user) %>
-                      <%= link_to 'フォロー外す', user_relationships_path(user.name_id), method: :delete, class: 'btn btn-sm btn-outline-danger rounded-pill' %>
-                    <% else %>
-                      <%= link_to 'フォローする', user_relationships_path(user.name_id), method: :post, class: 'btn btn-sm btn-outline-primary rounded-pill' %>
-                    <% end %>
-                    <div class="text-right">
-                      <% if current_user.follower?(user) %>
-                        フォローされています
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-                <div class="col-10 ml-auto py-3">
-                  <%= user.introduction %>
-                </div>
-              </div>
+              <%= render 'public/users/index', user: user %>
             </div>
           <% end %>
           <%= paginate @users %>

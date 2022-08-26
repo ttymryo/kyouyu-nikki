@@ -7,28 +7,28 @@
       <%= form_with model: @user, url: user_session_path, class: 'col-12 justify-content-center' do |f| %>
       　<%= render "public/shared/error_messages", resource: @user %>
         <div class="form-group row mb-4">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :name_id, 'ユーザーID' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 cl-lg-10">
             <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :email, 'メールアドレス' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :password %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
           </div>
         </div>

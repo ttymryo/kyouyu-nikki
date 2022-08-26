@@ -1,77 +1,39 @@
 <div class="container-fluid">
-  <div class="col-10 card w-80 mx-auto mt-4 <% if @diary.emotion == 'unhappy'%>border-primary<% elsif @diary.emotion == 'happy' %>border-danger<% else %>border-secondary<% end %>">
-    <div class="card-body">
-      <diV class="row">
-        <div class="col-1 pr-1">
-          <%= link_to admin_user_path(@diary.user) do %>
-            <%= image_tag @diary.user.get_image(50, 50), class: 'rounded-circle' %>
-          <% end %>
+  <div class="row">
+    <div class="col-lg-10 col-md-12 mx-auto">
+      <div class="card-list-container">
+        <%= render 'public/homes/index', diary: @diary %>
+        <div class="text-right">
+          <%= link_to '編集する', edit_admin_diary_path(@diary), data: {"turbolinks" => false} %>
+          <%= link_to '削除', admin_diary_path(@diary), method: :delete, data: {confirm: '本当に削除しますか？'} %>
         </div>
-        <div class="col-11">
-          <div class="row">
-            <div class="col-10 pb-2">
-              <%= link_to admin_user_path(@diary.user), class: 'text-secondary text-decoration-none' do %>
-                <%= @diary.user.name %> @<%= @diary.user.name_id %>
-              <% end %>
-            </div>
-            <div class="col-2">
-              <%= @diary.created_at.strftime('%Y/%m/%d') %>
-            </div>
-            <div class="col-10">
-              <%= simple_format(h(@diary.body)) %>
-            </div>
-            <div class="col-2">
-              <%= @diary.emotion_i18n %>
-            </div>
-            <div class="col-12 mb-3">
-              <div class="text-right">
-                <%= link_to '編集する', edit_admin_diary_path(@diary), data: {"turbolinks" => false} %>
-                <%= link_to '削除', admin_diary_path(@diary), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+        <div class="col-12">
+          <% @diary.comments.each do |comment| %>
+            <div class="row p-0">
+              <div class="col-1 p-0">
+                <%= link_to admin_user_path(comment.user) do %>
+                  <%= image_tag comment.user.get_image(50,50), class: 'rounded-circle' %>
+                <% end %>
               </div>
-            </div>
-            <div class="col-12 row px-0 mb-5  mx-0">
-              <div class="col-4">
-                <div class="favorite_btn_<%= @diary.id %> text-secondary favorite" style="width: 40px">
-                  <i class="far fa-heart text-secondary"></i>
-                  <%= @diary.favorites.count %>
-                </div>
-              </div>
-              <div class="col-2 text-right">
-                <i class="far fa-comment mr-1"></i><%= @diary.comments.count %>
-              </div>
-              <div class="col-6 p-0">
-                <p class="text-right m-0">コメント：<%= @diary.add_commented_i18n %> | 公開設定：<%= @diary.public_range_i18n %></p>
-              </div>
-            </div>
-            <div class="col-12">
-              <% @diary.comments.each do |comment| %>
-                <div class="row p-0">
-                  <div class="col-1 p-0">
-                    <%= link_to admin_user_path(comment.user) do %>
-                      <%= image_tag comment.user.get_image(50,50), class: 'rounded-circle' %>
-                    <% end %>
-                  </div>
-                  <div class="col-11 row">
-                    <div class="col-12">
-                      <div class="row">
-                        <div class="col-10">
-                          <%= comment.user.name %> @<%= comment.user.name_id %>
-                        </div>
-                        <div class="col-2 ml-auto">
-                          <% if comment.user == current_user %>
-                            <%= link_to '削除', admin_diary_comment_path(comment.diary.id, comment.id), method: :delete, class: 'ml-2' %>
-                          <% end %>
-                        </div>
-                        <div class="col-12 pb-2">
-                          <%= comment.body %>
-                        </div>
-                      </div>
+              <div class="col-11 row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-10">
+                      <%= comment.user.name %> @<%= comment.user.name_id %>
+                    </div>
+                    <div class="col-2 ml-auto">
+                      <% if comment.user == current_user %>
+                        <%= link_to '削除', admin_diary_comment_path(comment.diary.id, comment.id), method: :delete, class: 'ml-2' %>
+                      <% end %>
+                    </div>
+                    <div class="col-12 pb-2">
+                      <%= comment.body %>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

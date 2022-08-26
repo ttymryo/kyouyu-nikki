@@ -8,64 +8,64 @@
         <%= render "public/shared/error_messages", resource: resource %>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :name, '名前' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ゲストユーザー", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :name_id, 'ユーザーID' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", placeholder: "guestuser(半角英数3文字以上)", pattern: "^[a-zA-Z0-9]+$", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :introduction, '自己紹介' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "自己紹介255文字まで", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :email, 'メールアドレス' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "guest@example.com", class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :password %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.password_field :password, autocomplete: "new-password", placeholder: '6桁以上', class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :password_confirmation, 'パスワード確認' %>
           </div>
-          <div class="col-10">
+          <div class="col-12 col-lg-10">
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6桁以上', class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
-          <div class="col-2">
+          <div class="col-12 col-lg-2">
             <%= f.label :add_commented, '公開設定', class: 'form-label' %>
           </div>
-          <div class="col-10 btn-group" data-toggle="buttons" >
+          <div class="col-12 col-lg-10 btn-group" data-toggle="buttons" >
             <label class="btn btn-outline-secondary" style="width: 33%">
               <%= f.radio_button :is_public, true, class: 'btn_icon_none' %>公開
             </label>
