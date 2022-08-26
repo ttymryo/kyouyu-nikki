@@ -16,7 +16,7 @@
       <%= form_with url: search_path, local: true, method: :get, class: 'search' do |f| %>
         <%= f.text_field :word, value: @word, placeholder: 'キーワード検索' %>
         <%= f.hidden_field :range, value: 'Diary' %>
-        <%= button_tag type: 'submit', class: 'search-submit' do %>
+        <%= button_tag type: 'submit', class: 'search-submit ml-2' do %>
           <i class="fas fa-search"></i>
         <% end %>
       <% end %>
