@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   #findなどで例外が発生した場合リダイレクトする
-  rescue_from ActiveRecord::RecordNotFound do |exception|
+  # rescue_from ActiveRecord::RecordNotFound do |exception|
     # redirect_to :root, alert: 'エラーが発生しました'
-    render 'public/users/destroy'
-  end
+  # end
 
 
   before_action :user_acteve? #ユーザーは凍結されていない？
