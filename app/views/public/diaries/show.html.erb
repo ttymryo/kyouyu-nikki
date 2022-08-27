@@ -84,18 +84,18 @@
 
                 <div class="col-11 col-md-10 m-3 mr-3 border-bottom"></div>
 
-                <div class="col-12">
-                  <% if @diary.add_commented? && user_signed_in? %>
+                <% if @diary.add_commented_i18n == '許可' && user_signed_in? %>
+                  <div class="col-12">
                     <%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
                       <%= f.text_field :body, placeholder: 'コメントを送信',class: 'form-control' %>
                       <div class="col-10 mx-auto mt-2">
                         <%= f.submit '送信', class: 'btn btn-block btn-outline-primary rounded-pill' %>
                       </div>
                     <% end %>
-                  <% else %>
-                    <p class="text-center">コメントは禁止されています。</p>
-                  <% end %>
-                </div>
+                  </div>
+                <% else %>
+                  <p class="col-12 text-center">コメントは禁止されています。</p>
+                <% end %>
 
                 <div class="col-12">
                   <% @diary.comments.each do |comment| %>

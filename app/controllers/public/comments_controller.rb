@@ -1,12 +1,16 @@
 class Public::CommentsController < ApplicationController
   before_action :custom_authenticate
+  before_action :comment?, only: [:create]
+
   def create
     @comment = current_user.comments.new(comment_params)
     @comment.diary_id = params[:diary_id]
     if @comment.save
       redirect_to request.referer, notice: 'コメントを送信しました'
     else
-      redirect_to request.referer, alert: '送信に失敗しました'
+      @diary = Diary.find(params[:diary_id])
+      flash.now[:alert] = '送信に失敗しました'
+      render 'public/diaries/show'
     end
   end
 
@@ -19,7 +23,7 @@ class Public::CommentsController < ApplicationController
   def comment?
     diary = Diary.find(params[:diary_id])
     if diary.add_commented == false
-      redirect_to request.referer
+      redirect_to user_diary_path(diary.user.name_id,diary)
     end
   end
 
