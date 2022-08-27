@@ -29,11 +29,15 @@
                 </div>
 
                 <div class="col-9 d-none d-lg-block">
-                  <strong><%= @diary.user.name %></strong> @<%= @diary.user.name_id %>
+                  <%= link_to user_path(@diary.user.name_id), class: 'text-dark' do %>
+                    <strong><%= @diary.user.name %></strong> @<%= @diary.user.name_id %>
+                  <% end %>
                 </div>
                 <div class="col-8 col-sm-9 d-lg-none">
-                  <strong><%= @diary.user.name %></strong><br>
-                  @<%= @diary.user.name_id %>
+                  <%= link_to user_path(@diary.user.name_id), class: 'text-dark' do %>
+                    <strong><%= @diary.user.name %></strong><br>
+                    @<%= @diary.user.name_id %>
+                  <% end %>
                 </div>
 
                 <div class="col-2 col-md-2 col-lg-2 col-xl-3 text-right p-0 d-none d-sm-block">
@@ -113,7 +117,9 @@
                         </div>
                         <div class="col-10 col-sm-11 col-md-12 row m-0 p-0">
                           <div class="col-10">
-                            <strong><%= comment.user.name %></strong><div class="d-md-none"></div> @<%= comment.user.name_id %>
+                            <%= link_to user_path(comment.user.name_id), class: 'text-dark' do %>
+                              <strong><%= comment.user.name %></strong><div class="d-md-none"></div> @<%= comment.user.name_id %>
+                            <% end %>
                           </div>
                           <% if comment.user == current_user || @diary.user == current_user %>
                             <div class="col-2 p-0 text-right">

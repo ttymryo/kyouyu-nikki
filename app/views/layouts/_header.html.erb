@@ -13,18 +13,20 @@
     </div>
 
     <div class="mx-auto d-none d-lg-block">
-      <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
-        <%= f.hidden_field :range, value: 'Diary' %>
-        <div class ="row m-0 p-0 border rounded-pill bg-white">
-          <div class="w-80">
-            <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
+      <% if user_signed_in? || admin_signed_in? %>
+        <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
+          <%= f.hidden_field :range, value: 'Diary' %>
+          <div class ="row m-0 p-0 border rounded-pill bg-white">
+            <div class="w-80">
+              <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
+            </div>
+            <div class="w-20 text-right">
+              <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            </div>
           </div>
-          <div class="w-20 text-right">
-            <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
-              <i class="fas fa-search"></i>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
@@ -60,9 +62,11 @@
     </ul>
     <ul class="navbar-nav ml-auto p-2 rounded-pill d-lg-none" style="background-color: #fff">
       <div>
-        <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-          <i class="fas fa-search"></i>
-        </button>
+        <% if user_signed_in? || admin_signed_in? %>
+          <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+            <i class="fas fa-search"></i>
+          </button>
+        <% end %>
         <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
           <i class="fas fa-bars"></i>
         </button>
@@ -70,18 +74,20 @@
     </ul>
     <ul class="collapse col-12 col-lg-none" id="collapseSearch">
       <div>
-        <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
-          <%= f.hidden_field :range, value: 'Diary' %>
-          <div class ="row m-0 p-0 border rounded-pill bg-white">
-            <div class="w-80">
-              <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
+        <% if user_signed_in? || admin_signed_in? %>
+          <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
+            <%= f.hidden_field :range, value: 'Diary' %>
+            <div class ="row m-0 p-0 border rounded-pill bg-white">
+              <div class="w-80">
+                <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
+              </div>
+              <div class="w-20 text-right">
+                <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              </div>
             </div>
-            <div class="w-20 text-right">
-              <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
-                <i class="fas fa-search"></i>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </ul>

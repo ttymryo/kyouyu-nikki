@@ -7,11 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create(email: 'admin@admin',password: 'minminadminmin')
 
-User.create(name: 'テストユーザー', name_id: 'testuser',email: 'test@test',password: 'usertesttestuser')
-
-user = User.find_by(name_id: 'testuser')
-
-Diary.create(user_id: user.id, body: 'てすと！全員コメントおｋ', emotion: 0, public_range: 2, add_commented: true)
-Diary.create(user_id: user.id, body: 'てすと！全員コメントだめ', emotion: 0, public_range: 2, add_commented: false)
-Diary.create(user_id: user.id, body: 'てすと！FFコメントだめ', emotion: 0, public_range: 1, add_commented: false)
-Diary.create(user_id: user.id, body: 'てすと！自分コメントだめ', emotion: 0, public_range: 0, add_commented: false)
+User.create(name: '$', name_id: 'user'   ,email: 'test1@test',password: 'usertesttestuser', is_public: false, is_deleted: true)
+User.create(name: '$', name_id: 'users'  ,email: 'test2@test',password: 'usertesttestuser', is_public: false, is_deleted: true)
+User.create(name: '$', name_id: 'admin'  ,email: 'test3@test',password: 'usertesttestuser', is_public: false, is_deleted: true)
+User.create(name: '$', name_id: 'about'  ,email: 'test4@test',password: 'usertesttestuser', is_public: false, is_deleted: true)
+User.create(name: '$', name_id: 'sort'   ,email: 'test5@test',password: 'usertesttestuser', is_public: false, is_deleted: true)
+User.create(name: '$', name_id: 'search' ,email: 'test6@test',password: 'usertesttestuser', is_public: false, is_deleted: true)

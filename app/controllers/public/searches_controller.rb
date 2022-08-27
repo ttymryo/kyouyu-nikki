@@ -11,13 +11,13 @@ class Public::SearchesController < ApplicationController
       if @range == 'User'
         @users = User.looks(params[:word])
         @match_count = @users.count
-        puts @users
         unless @users.blank?
           @users = Kaminari.paginate_array(@users).page(params[:page]).per(20)
         end
       elsif @range == 'Diary'
-        @diaries = Diary.looks(params[:word]).page(params[:page]).per(20).order(created_at: :desc)
+        @diaries = Diary.looks(params[:word])
         @match_count = @diaries.count
+        @diaries = @diaries.page(params[:page]).per(20).order(created_at: :desc)
       end
     end
 

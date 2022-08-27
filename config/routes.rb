@@ -29,13 +29,13 @@ Rails.application.routes.draw do
 
     resources :users, path: '/', param: :name_id do
       resources :diaries, except: [:index, :create] do
+        collection do
+          post 'new', to: 'diaries#create'
+          get :history
+        end
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:destroy]
         post '/', to: 'comments#create', as: :comments
-        collection do
-          get :history
-          post 'new', to: 'diaries#create'
-        end
       end
       member do
         get :follows, :followers

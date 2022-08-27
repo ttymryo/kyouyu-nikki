@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-10 col-md-12 mx-auto">
-      <h4 class="col-12">検索結果：<%= @word %></h4>
+      <h4 class="col-12">検索結果：<%= @word %><div class="d-md-none"></div> ：<%= @match_count %>件ヒット</h4>
       <table class="table col-12" data-toggle="buttons">
         <td class="text-center"><%= link_to search_path(word: @word, range: 'Diary') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'Diary' %>active<% end %>">Diary</button><% end %></td>
         <td class="text-center"><%= link_to search_path(word: @word, range: 'User') do %><button type="button" class="btn btn-block btn-outline-secondary <% if @range == 'User' %>active<% end %>">User</button><% end %></td>

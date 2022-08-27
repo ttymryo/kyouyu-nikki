@@ -21,7 +21,7 @@ class Admin::DiariesController < ApplicationController
   def destroy
     diary = Diary.find(params[:id])
     diary.destroy
-    redirect_to root_path
+    redirect_to admin_home_path
   end
 
   def comments

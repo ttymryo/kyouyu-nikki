@@ -1,5 +1,5 @@
 class Public::DiariesController < ApplicationController
-  before_action :set_diary, except: [:new, :create] #投稿をセット
+  before_action :set_diary, except: [:new, :create, :history] #投稿をセット
   before_action :custom_authenticate, only: [:new, :create, :update, :edit, :destroy] #ユーザーがログインしていますか？
   before_action :confirm_diary, only: [:show, :update, :destroy, :edit] #urlの情報は正しいですか？
   before_action :ensure_correct_user, only: [:update, :edit, :destroy] #あなたが投稿したものですか？

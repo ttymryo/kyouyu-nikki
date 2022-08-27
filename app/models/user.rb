@@ -53,12 +53,12 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(
       name: 'ゲストユーザー' ,
-      name_id: 'guestuser',
+      name_id: 'guest_user',
       introduction: 'このアカウントは共用アカウントです。すべての機能が利用できます。プロフィールの設定は保存されません。' ,
-      email: 'user@user'
+      email: 'guest_user@example.com'
       ) do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name_id = "user"
+      user.name_id = "guest_user"
     end
   end
 
