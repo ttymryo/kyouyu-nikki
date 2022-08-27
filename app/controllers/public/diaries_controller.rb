@@ -54,17 +54,17 @@ class Public::DiariesController < ApplicationController
     @day = 0
   end
 
-  def confirm_diary
-    @user = User.find_by!(name_id: params[:user_name_id])
-    unless @user == @diary.user
-      redirect_to root_path, alert: 'ページが存在しません'
-    end
-  end
-
   private
 
   def diary_params
     params.require(:diary).permit(:body,:emotion,:add_commented,:public_range)
+  end
+
+  def confirm_diary
+    @user = User.find_by!(name_id: params[:user_name_id])
+    unless @user == @diary.user
+      redirect_to root_path, alert: 'URLが間違っています'
+    end
   end
 
   def public_range

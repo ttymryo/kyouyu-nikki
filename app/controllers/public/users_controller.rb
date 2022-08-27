@@ -29,9 +29,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def follows
     @users = @user.following_user
   end
