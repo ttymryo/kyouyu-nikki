@@ -7,7 +7,7 @@ class Public::HomesController < ApplicationController
       @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
     end
   end
-  
+
   def about
   end
 
@@ -18,14 +18,13 @@ class Public::HomesController < ApplicationController
     when 'いいね' then
       @diaries = []
       current_user.favorites.each do |favorite|
-        @diaries.push(favorite.diary)
+        @diaries << favorite.diary
       end
-      @diaries.flatten!
       @diaries = Kaminari.paginate_array(@diaries).page(params[:page]).per(20)
     when 'フォロー' then
       @diaries = []
       current_user.following_user.each do |user|
-        @diaries.push(user.diaries)
+        @diaries << user.diaries
       end
       @diaries.flatten!
       @diaries = Kaminari.paginate_array(@diaries.sort_by{|diary| diary.id}.reverse).page(params[:page]).per(20)
@@ -35,7 +34,7 @@ class Public::HomesController < ApplicationController
         if current_user.follower?(user)
           user.diaries.each do |diary|
             if diary.public_range == 'in_ff'
-              @diaries.push(diary)
+              @diaries << diary
             end
           end
         end

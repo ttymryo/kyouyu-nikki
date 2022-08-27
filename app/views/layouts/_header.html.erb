@@ -72,16 +72,15 @@
         </button>
       </div>
     </ul>
-    <ul class="collapse col-12 col-lg-none" id="collapseSearch">
-      <div>
+    <ul class="collapse row col-12 justify-content-center col-lg-none" id="collapseSearch">
         <% if user_signed_in? || admin_signed_in? %>
-          <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
+          <%= form_with url: search_path, local: true, method: :get do |f| %>
             <%= f.hidden_field :range, value: 'Diary' %>
             <div class ="row m-0 p-0 border rounded-pill bg-white">
-              <div class="w-80">
+              <div class="">
                 <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
               </div>
-              <div class="w-20 text-right">
+              <div class="text-right">
                 <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
                   <i class="fas fa-search"></i>
                 <% end %>
@@ -89,9 +88,8 @@
             </div>
           <% end %>
         <% end %>
-      </div>
     </ul>
-    <ul class="collapse col-12 list-unstyled" id="collapseHeader">
+    <ul class="collapse col-12 list-unstyled text-right" id="collapseHeader">
       <% if user_signed_in? %>
         <li>
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
