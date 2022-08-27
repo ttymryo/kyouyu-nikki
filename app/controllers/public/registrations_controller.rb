@@ -10,7 +10,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     root_path
   end
-
+  
+  #新規登録のときに許可するパラメータを追加
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,
       keys: [

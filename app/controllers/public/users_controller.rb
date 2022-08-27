@@ -1,26 +1,29 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
-  before_action :custom_authenticate, only: [:edit, :update]
-  before_action :is_public?, only: [:follows, :followers]
+  before_action :set_user #@userをセット
+  before_action :custom_authenticate, only: [:edit, :update] #ユーザーでログインしてますか？
+  before_action :ensure_correct_user, only: [:edit, :update] #そのページは自分のページですか？
+  before_action :is_public?, only: [:follows, :followers] #そのアカウントは公開垢ですか？
+
+  def set_user
+    @user = User.find_by!(name_id: params[:name_id])
+  end
 
   def show
-    @user = User.find_by!(name_id: params[:name_id])
     @diaries = @user.diaries.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
-    @user = User.find_by!(name_id: params[:name_id])
   end
 
   def update
-    @user = User.find_by!(name_id: params[:name_id])
     # ゲストユーザーの時は保存しない
     if @user.name_id == 'user'
-      redirect_to user_path(@user.name_id)
+      redirect_to user_path(@user.name_id), notice: 'ゲストユーザーは編集が保存されません'
     else
       if @user.update(user_params)
-        redirect_to user_path(@user.name_id)
+        redirect_to user_path(@user.name_id), notice: '更新しました'
       else
+        flash.now[:alert] = '更新に失敗しました'
         render :edit
       end
     end
@@ -30,14 +33,13 @@ class Public::UsersController < ApplicationController
   end
 
   def follows
-    user = User.find_by!(name_id: params[:name_id])
-    @users = user.following_user
+    @users = @user.following_user
   end
 
   def followers
-    user = User.find_by!(name_id: params[:name_id])
-    @users = user.follower_user
+    @users = @user.follower_user
   end
+
 
   private
 
@@ -46,9 +48,8 @@ class Public::UsersController < ApplicationController
   end
 
   def is_public?
-    @user = User.find_by(name_id: params[:name_id])
-    unless @user.is_public?
-      redirect_to root_path
+    if @user.is_public == false && @user != current_user
+      redirect_to root_path, alert: 'そのページは表示できません'
     end
   end
 end

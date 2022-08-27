@@ -6,7 +6,7 @@ class User < ApplicationRecord
          authentication_keys: [:email, :name_id]
 
   validates :name, presence: true
-  validates :name_id, presence: true, uniqueness: true, length: { minimum: 3 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :name_id, presence: true, uniqueness: true, length: { minimum: 3 }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
   validates :introduction, length: { maximum: 255 }
   validates :is_public, inclusion: {in: [true, false]}
   validates :is_deleted, inclusion: {in: [true, false]}
@@ -53,7 +53,7 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(
       name: 'ゲストユーザー' ,
-      name_id: 'user',
+      name_id: 'guestuser',
       introduction: 'このアカウントは共用アカウントです。すべての機能が利用できます。プロフィールの設定は保存されません。' ,
       email: 'user@user'
       ) do |user|

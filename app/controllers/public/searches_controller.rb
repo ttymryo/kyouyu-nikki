@@ -5,7 +5,7 @@ class Public::SearchesController < ApplicationController
     @word = params[:word]
     @range = params[:range]
 
-    if @word.blank?
+    if @word.blank? && user_signed_in?
       redirect_to request.referer, alert: 'キーワードを入力してください'
     else
       if @range == 'User'

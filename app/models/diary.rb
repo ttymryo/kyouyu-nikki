@@ -9,9 +9,9 @@ class Diary < ApplicationRecord
 
   with_options presence: true do
     validates :user_id
-    validates :body
+    validates :body, length: { maximum: 10000 }
     validates :emotion, inclusion: { in: Diary.emotions.keys }
-    validates :public_range, inclusion: {in: Diary.public_ranges_i18n.keys}
+    validates :public_range, inclusion: {in: Diary.public_ranges.keys}
     validates :add_commented, inclusion: {in: Diary.add_commenteds.keys}
   end
 
@@ -19,7 +19,7 @@ class Diary < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def self.looks(word)
     @diary = Diary.where('body LIKE?', "%#{word}%")
     return @diary

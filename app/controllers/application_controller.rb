@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :user_acteve?
+  #findなどで例外が発生した場合リダイレクトする
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    redirect_to :root, alert: 'ページが存在しません'
+  end
 
+
+  before_action :user_acteve? #ユーザーは凍結されていない？
+
+  #ユーザーのログイン確認でアドミンでログインしてた時のパス指定
   def custom_authenticate
     if admin_signed_in?
       redirect_to admin_home_path
@@ -9,24 +16,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #違うアカウントの情報を表示させない
   def ensure_correct_user
-    @user = User.find_by(name_id: params[:user_name_id])
-    if @user.nil?
-      @user = User.find_by(name_id: params[:name_id])
+    name_id = params[:user_name_id]
+    if name_id.nil?
+      name_id = params[:name_id]
     end
 
-    unless @user == current_user
-      flash[:notice] = "アカウントが違うため編集できません"
-      redirect_to root_path
+    user = User.find_by!(name_id: name_id)
+
+    unless user == current_user
+      redirect_to root_path, alert: 'このページは表示できません'
     end
   end
 
+  #ログインしたユーザーが凍結されていた場合
   def user_acteve?
     if user_signed_in? && current_user.is_deleted?
       render "public/users/delete"
     end
   end
 
+
+  #deviseのパスの指定
   def after_sign_in_path_for(resource)
     case resource
     when Admin then

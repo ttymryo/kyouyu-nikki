@@ -1,10 +1,15 @@
 class Public::DiariesController < ApplicationController
-  before_action :custom_authenticate, only: [:new, :create, :update, :edit, :destroy]
-  before_action :ensure_correct_user, only: [:update, :edit, :destroy]
-  before_action :public_range, only: [:show]
+  before_action :set_diary, except: [:new, :create] #投稿をセット
+  before_action :custom_authenticate, only: [:new, :create, :update, :edit, :destroy] #ユーザーがログインしていますか？
+  before_action :confirm_diary, only: [:show, :update, :destroy, :edit] #urlの情報は正しいですか？
+  before_action :ensure_correct_user, only: [:update, :edit, :destroy] #あなたが投稿したものですか？
+  before_action :public_range, only: [:show] #この投稿はあなたが見てもいいですか？
+
+  def set_diary
+    @diary = Diary.find(params[:id])
+  end
 
   def show
-    @diary = Diary.find(params[:id])
     @comment = Comment.new
   end
 
@@ -27,7 +32,6 @@ class Public::DiariesController < ApplicationController
   end
 
   def update
-    @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
       redirect_to user_diary_path(@diary.user.name_id,@diary), notice: '更新しました。'
     else
@@ -37,19 +41,24 @@ class Public::DiariesController < ApplicationController
   end
 
   def destroy
-    diary = Diary.find(params[:id])
-    diary.destroy
+    @diary.destroy
     redirect_to root_path, notice: '投稿を削除しました。'
   end
 
   def edit
-    @diary = Diary.find(params[:id])
   end
 
   def history
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     @diaries = current_user.diaries.where(created_at: @month.all_month)
     @day = 0
+  end
+
+  def confirm_diary
+    @user = User.find_by!(name_id: params[:user_name_id])
+    unless @user == @diary.user
+      redirect_to root_path, alert: 'ページが存在しません'
+    end
   end
 
   private
@@ -59,11 +68,9 @@ class Public::DiariesController < ApplicationController
   end
 
   def public_range
-    @user = User.find_by(name_id: params[:user_name_id])
     unless @user.is_public?
       redirect_to root_path, alert: '投稿が見つかりません'
     end
-    @diary = Diary.find(params[:id])
     unless current_user == @diary.user
       if @diary.user && @diary.public_range_i18n == '自分だけ'
         redirect_to root_path, alert: '投稿が見つかりません。'
