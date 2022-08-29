@@ -60,8 +60,8 @@
       <div class="col-12 row mx-auto justify-content-around">
 
         <div>
-          <%= link_to user_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-            <i class="fas fa-user"></i>
+          <%= link_to user_path(current_user.name_id) do %>
+            <%= image_tag current_user.get_image(50,50), class: 'rounded-circle' %>
           <% end %>
         </div>
         <div>

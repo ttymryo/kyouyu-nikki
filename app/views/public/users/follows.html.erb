@@ -1,24 +1,41 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-9 mx-auto">
+    <div class="col-12 co-lx-9 mx-auto">
+      <h4>フォロー</h4>
       <div class="card-list-container">
         <% @users.each do |user| %>
           <div class="card w-80 mx-auto mt-4 shadow-sm">
-            <%= link_to user_path(user.name_id) do %>
-              <div class="card-body">
-                <diV class="row">
-                  <div class="pl-1">
-                    <%= image_tag user.get_image(50,50), class: "rounded-circle" %>
-                  </div>
-                  <div class="col-10">
-                    <div class="row justify-content-between ml-auto">
-                      <p><%= user.name %> @<%= user.name_id %></p>
-                      <p class="text-right">フォロー<%= user.following_user.count %>|フォロワー<%= user.follower_user.count %></p>
+            <div class="card-body">
+              <diV class="row">
+                <% if current_user.follower?(user) %>
+                  <div class="col-12 text-right">
+                    <div class="ml-auto">
+                      フォローされています
                     </div>
+                  </div>
+                <% end %>
+                <div class="col-12 row mx-auto">
+                  <%= link_to user_path(user.name_id) do %>
+                    <div class="pl-1">
+                      <%= image_tag user.get_image(50,50), class: "rounded-circle" %>
+                    </div>
+                  <% end %>
+                  <%= link_to user_path(user.name_id) do %>
+                    <p class="m-0 d-none d-lg-blok"><%= user.name %> @<%= user.name_id %></p>
+                    <p class="m-0 d-lg-none"><%= user.name %><br> @<%= user.name_id %></p>
+                <% end %>
+                  <div class="ml-auto">
+                    <% if current_user != user %>
+                      <% if current_user.following?(user) %>
+                        <%= link_to 'フォロー外す', user_relationships_path(user.name_id), method: :delete, class: 'btn btn-sm btn-outline-danger rounded-pill' %>
+                      <% else %>
+                        <%= link_to 'フォローする', user_relationships_path(user.name_id), method: :post, class: 'btn btn-sm btn-outline-primary rounded-pill' %>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
               </div>
-            <% end %>
+            </div>
           </div>
         <% end %>
       </div>
