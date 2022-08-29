@@ -7,24 +7,26 @@
         </div>
         <div class="col-sm-12 col-xl-11 row p-0">
 
-          <div class="col-2 col-sm-1 col-md-1 col-lg-1 p-0 d-xl-none">
+          <div class="p-0 d-xl-none" styke="width: 50px">
             <%= image_tag diary.user.get_image(50, 50), class: 'rounded-circle' %>
           </div>
 
-          <div class="col-9 d-none d-lg-block">
+          <div class="col-7 d-none d-xl-block">
             <strong><%= diary.user.name %></strong> @<%= diary.user.name_id %>
           </div>
-          <div class="col-8 col-sm-9 d-lg-none">
+          <div class="col-7 d-xl-none">
             <strong><%= diary.user.name %></strong><br>
             @<%= diary.user.name_id %>
           </div>
 
-          <div class="col-2 col-md-2 col-lg-2 col-xl-3 text-right p-0 d-none d-sm-block">
+          <div class="col-2 col-md-2 col-lg-2 col-xl-3 text-right ml-auto p-0 d-none d-sm-block">
             <%= diary.created_at.strftime('%Y/%m/%d') %>
+            <%= diary.created_at.strftime('%H:%M') %>
           </div>
-          <div class="col-2 text-right p-0 d-sm-none">
+          <div class="col-2 text-right ml-auto p-0 d-sm-none">
             <%= diary.created_at.strftime('%Y') %><br>
             <%= diary.created_at.strftime('%m/%d') %>
+            <%= diary.created_at.strftime('%H:%M') %>
           </div>
 
           <div class="col-12 mt-3 mb-4">

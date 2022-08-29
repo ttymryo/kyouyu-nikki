@@ -31,6 +31,9 @@
         <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
       </div>
       <div class="pb-3">
+        <%= link_to 'コメント', sort_path(word: 'コメント'), class: "btn btn-outline-info rounded-pill" %>
+      </div>
+      <div class="pb-3">
         <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
       </div>
       <div class="pb-3">
@@ -79,14 +82,20 @@
             </button>
           </div>
           <div class="collapse w-100 row justify-content-around pt-2" id="collapseSidebar">
+            <div class="col-12 my-2">
+              表示する投稿
+            </div>
             <div>
               <%= link_to 'いいね', sort_path(word: 'いいね'), class: "btn btn-outline-info rounded-pill" %>
+            </div>
+            <div>
+              <%= link_to 'コメント', sort_path(word: 'コメント'), class: "btn btn-outline-info rounded-pill" %>
             </div>
             <div>
               <%= link_to 'フォロー', sort_path(word: 'フォロー'), class: "btn btn-outline-info rounded-pill" %>
             </div>
             <div>
-              <%= link_to 'FF公開限定', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
+              <%= link_to 'FF公開', sort_path(word: 'FF公開限定'), class: "btn btn-outline-info rounded-pill" %>
               </div>
           </div>
         <% end %>

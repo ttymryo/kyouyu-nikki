@@ -72,7 +72,7 @@
         </button>
       </div>
     </ul>
-    <ul class="collapse row col-12 justify-content-center col-lg-none" id="collapseSearch">
+    <ul class="collapse row col-12 mx-auto justify-content-center col-lg-none" id="collapseSearch">
         <% if user_signed_in? || admin_signed_in? %>
           <%= form_with url: search_path, local: true, method: :get do |f| %>
             <%= f.hidden_field :range, value: 'Diary' %>
@@ -89,33 +89,33 @@
           <% end %>
         <% end %>
     </ul>
-    <ul class="collapse col-12 list-unstyled text-right" id="collapseHeader">
+    <ul class="collapse col-12 list-unstyled text-right mt-2" id="collapseHeader">
       <% if user_signed_in? %>
         <li>
-          <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
+          <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill m-1" %>
         </li>
         <li>
-          <%= link_to '新規投稿', new_user_diary_path(current_user.name_id), class: "btn rounded-pill", data: {"turbolinks" => false} %>
+          <%= link_to '新規投稿', new_user_diary_path(current_user.name_id), class: "btn rounded-pill m-1", data: {"turbolinks" => false} %>
         </li>
         <li>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill" %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill m-1" %>
         </li>
       <% elsif admin_signed_in? %>
         <li>
-          <%= link_to 'ユーザー', admin_users_path, class: 'btn rounded-pill' %>
+          <%= link_to 'ユーザー', admin_users_path, class: 'btn rounded-pill m-1' %>
         </li>
         <li>
-          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn rounded-pill' %>
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn rounded-pill m-1' %>
         </li>
       <% else %>
         <li>
-          <%= link_to '新規登録', new_user_registration_path, class: "btn rounded-pill", data: {"turbolinks" => false} %>
+          <%= link_to '新規登録', new_user_registration_path, class: "btn rounded-pill m-1", data: {"turbolinks" => false} %>
         </li>
         <li>
-          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn rounded-pill", method: :post %>
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn rounded-pill m-1", method: :post %>
         </li>
         <li>
-          <%= link_to 'ログイン', new_user_session_path, class: "btn rounded-pill" %>
+          <%= link_to 'ログイン', new_user_session_path, class: "btn rounded-pill m-1" %>
         </li>
       <% end %>
     </ul>

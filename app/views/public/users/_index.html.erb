@@ -46,11 +46,11 @@
         <% end %>
       <% elsif current_user != user && user_signed_in? %>
         <% if current_user.following?(user) %>
-          <%= link_to user_relationships_path(user.name_id), method: :delete, class: 'btn btn-sm btn-outline-danger rounded-pill' do %>
+          <%= link_to user_relationships_path(user.name_id), method: :delete, class: 'btn btn- btn-outline-danger rounded-pill' do %>
             <i class="fas fa-kiss-wink-heart"></i>
           <% end %>
         <% else %>
-          <%= link_to user_relationships_path(user.name_id), method: :post, class: 'btn btn-sm btn-outline-primary rounded-pill' do %>
+          <%= link_to user_relationships_path(user.name_id), method: :post, class: 'btn btn- btn-outline-primary rounded-pill' do %>
             <i class="fas fa-kiss"></i>
           <% end %>
         <% end %>
