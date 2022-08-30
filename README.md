@@ -23,7 +23,7 @@ https://kyoyu-nikki.com
 
 
 ## 設計書
-<...>
+<img src="https://github.com/ttymryo/kyoyu_nikki/blob/readme/app/assets/images/共有日記ER図.jpg" width="500px">
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,7 +32,15 @@ https://kyoyu-nikki.com
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
+## 使用gem
+- devise
+- emun_help
+- kaminari
+- image_processing
+- その他デプロイ用
+
 ## 使用素材
 - ロゴ  毛筆漢字 りいてがき筆  https://www.xiconeditor.com/
 - favicon  https://www.xiconeditor.com/
-- 
+- fontawesome
+- google font
