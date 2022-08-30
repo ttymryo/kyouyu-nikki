@@ -56,9 +56,8 @@
   function count_length(Field,Messge){
     var Current = document.getElementById(Field).value.length;
     var ColorClass = "green"
-      document.getElementById(Messge).innerHTML = "現在"+
-        Current+"文字";
-    if (Current < 10000){ColorClass="red";}
+    if (Current > 10000){ColorClass="red";}
+    document.getElementById(Messge).innerHTML = "現在"+"<span class='"+ColorClass+"'>"+Current+"</span>"+"文字"
   }
 
   $(document).ready(function(){
