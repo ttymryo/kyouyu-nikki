@@ -1,4 +1,4 @@
-# 共有日記
+<img src="https://github.com/ttymryo/kyoyu_nikki/blob/main/app/assets/images/logo.png" width="300px">
 
 https://kyoyu-nikki.com
 
