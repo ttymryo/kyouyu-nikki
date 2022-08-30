@@ -68,7 +68,7 @@ class Public::DiariesController < ApplicationController
   end
 
   def public_range
-    unless @user.is_public? && @user != current_user
+    if @user.is_public == false && @user != current_user
       redirect_to root_path, alert: '投稿が見つかりません'
     end
     unless current_user == @diary.user
