@@ -17,19 +17,19 @@ class Public::HomesController < ApplicationController
     @diaries = []
     case @select_word
     when 'いいね' then
-      current_user.favorites.each do |favorite|
+      current_user.favorites.reverse.each do |favorite|
         @diaries << favorite.diary
       end
       @diaries = Kaminari.paginate_array(@diaries).page(params[:page]).per(20)
       @select_word = 'いいねした投稿'
-      
+
     when 'フォロー' then
       current_user.following_user.each do |user|
         @diaries << user.diaries
       end
       @diaries.flatten!
       @diaries = Kaminari.paginate_array(@diaries.sort_by{|diary| diary.id}.reverse).page(params[:page]).per(20)
-      
+
     when 'FF公開限定' then
       current_user.following_user.each do |user|
         if current_user.follower?(user)
@@ -42,14 +42,14 @@ class Public::HomesController < ApplicationController
       end
       @diaries.flatten!
       @diaries = Kaminari.paginate_array(@diaries.sort_by{|diary| diary.id}.reverse).page(params[:page]).per(20)
-      
+
     when 'コメント'
       current_user.comments.reverse.each do |comment|
         @diaries << comment.diary
       end
       @diaries = Kaminari.paginate_array(@diaries).page(params[:page]).per(20)
       @select_word = 'コメントした投稿'
-      
+
     else
       @select_word = 'ホーム'
       @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
