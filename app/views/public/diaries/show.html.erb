@@ -91,7 +91,7 @@
                 <% if @diary.add_commented_i18n == '許可' && user_signed_in? %>
                   <div class="col-12">
                     <%= form_with model: @comment, url: user_diary_comments_path(@diary.user.name_id, @diary), method: :post do |f| %>
-                      <%= f.text_field :body, placeholder: 'コメントを送信',class: 'form-control' %>
+                      <%= f.text_field :body, placeholder: 'コメントを送信',required: true,class: 'form-control' %>
                       <div class="col-10 mx-auto mt-2">
                         <%= f.submit '送信', class: 'btn btn-block btn-outline-primary rounded-pill' %>
                       </div>

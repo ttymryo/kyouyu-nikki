@@ -5,6 +5,10 @@
 @import 'modal';
 @import 'flash';
 
+.green {color: #080;}
+.red {color: #c00;}
+.counter {margin: 0.1em 0.5em; color: #333; font-size: 0.8em;}
+
 .header-color, .form-color {
   background-color: #f4e1cd;
   .btn:not(:hover) {

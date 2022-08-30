@@ -1,11 +1,10 @@
 <div class="container-fluid">
-  <div class="col-11 card w-80 mx-auto mt-4 shadow-sm form-color">
+  <div class="col-11 col-xl-8 col-xxl-6 card mx-auto mt-4 shadow-sm form-color">
     <div class="card-body col-12 row justify-content-center mx-auto">
       <div class="col-12">
         <h3 class="text-center pb-3">プロフィール編集</h3>
       </div>
       <%= form_with model: @user, url: user_path(@user.name_id), method: :patch, class: 'col-12 justify-content-center' do |f| %>
-        <%= render "public/shared/error_messages", resource: @user %>
         <div class="form-group mb-4 row">
           <div class="col-12 col-lg-2">
             <%= f.label :image, '画像' %>
@@ -20,16 +19,16 @@
             <%= f.label :name, '名前' %>
           </div>
           <div class="col-12 col-lg-10">
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name",required: true, class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group mb-4 row">
           <div class="col-12 col-lg-2">
-            <%= f.label :name_id, 'Name_ID' %>
+            <%= f.label :name_id, 'ユーザーID' %>
           </div>
           <div class="col-12 col-lg-10">
-            <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", placeholder: "半角英数3文字以上(_使用可)", pattern: "^[a-zA-Z0-9_]+$", class: 'form-control' %>
+            <%= f.text_field :name_id, autofocus: true, autocomplete: "name_id", placeholder: "半角英数3文字以上(_使用可)", pattern: "^[a-zA-Z0-9_]+$",minlength:"3",required: true, class: 'form-control' %>
           </div>
         </div>
 
@@ -38,7 +37,8 @@
             <%= f.label :introduction, '自己紹介' %>
           </div>
           <div class="col-12 col-lg-10">
-            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: 'form-control' %>
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",maxlength:"255",id:"introduction", onKeyup:"count_length('introduction','introduction_count',255);", class: 'form-control' %>
+            <p id="introduction_count" class="counter">現在0文字</p>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
             <%= f.label :email, 'メールアドレス' %>
           </div>
           <div class="col-12 col-lg-10">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",required: true, class: 'form-control' %>
           </div>
         </div>
 
