@@ -7,23 +7,3 @@ $(document).on('turbolinks:load', function() {
     padding: 10
   });
 });
-
-function count_length(Field,Messge,MaxLength){
-  var Current = document.getElementById(Field).value.length;
-  var ColorClass = "green";
-  var Limit;
-  if (MaxLength && MaxLength>0){
-    var Limit = MaxLength - Current;
-    if (Limit < 0 ){ColorClass="red";}
-      document.getElementById(Messge).innerHTML = "現在"+
-        Current+"文字 <span class='"+ColorClass+
-          "'>あと"+Limit+"文字</span>";
-    } else {
-      document.getElementById(Messge).innerHTML = "現在"+
-        Current+"文字";
-  }
-}
-
-$(document).ready(function(){
-  count_length('introduction','introduction_count',255);
-});
