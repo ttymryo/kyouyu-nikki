@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   #findなどで例外が発生した場合リダイレクトする
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    if params[:name_id] == 'favicon.icofavicon'
+    if params[:name_id] == 'favicon'
       redirect_to root_path
     else
       redirect_to :root, alert: 'エラーが発生しました'
