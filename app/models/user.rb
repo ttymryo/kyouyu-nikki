@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  validates :image, file_content_type: { allow: /^image\/.*/ }
+
+
   has_many :diaries, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy

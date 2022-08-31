@@ -61,6 +61,7 @@ gem 'enum_help'
 gem 'image_processing', '~> 1.2'
 gem 'kaminari'
 gem 'dotenv-rails'
+gem 'file_validators'
 
 group :production do
   gem 'mysql2'

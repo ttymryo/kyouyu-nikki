@@ -7,7 +7,7 @@
       <%= form_with model: @user, url: user_path(@user.name_id), method: :patch, class: 'col-12 justify-content-center' do |f| %>
         <div class="form-group mb-4 row">
           <div class="col-12 col-lg-2">
-            <%= f.label :image, '画像' %>
+            <%= f.label :image, '画像(image_file)' %>
           </div>
           <div class="col-12 col-lg-10">
             <%= f.file_field :image, accept: "image/*" %>
