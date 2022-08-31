@@ -17,7 +17,7 @@ class Public::UsersController < ApplicationController
 
   def update
     # ゲストユーザーの時は保存しない
-    if @user.name_id == 'user'
+    if @user.name_id == 'guest_user'
       redirect_to user_path(@user.name_id), notice: 'ゲストユーザーは編集が保存されません'
     else
       if @user.update(user_params)
