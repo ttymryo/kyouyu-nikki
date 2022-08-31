@@ -11,6 +11,9 @@
           </div>
           <div class="col-12 col-lg-10">
             <%= f.file_field :image, accept: "image/*" %>
+            <% if @user.errors.include?(:image) %>
+              <p style="color: red;"><%= @user.errors.full_messages_for(:image).first %>
+            <% end %>
           </div>
         </div>
 

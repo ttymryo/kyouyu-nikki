@@ -22,18 +22,22 @@ ja:
         name_id: 'ユーザーID'
         introduction: '自己紹介'
         email: 'メールアドレス'
-        image: 'プロフィール画像'
+        image: '画像'
       diary:
         body: '投稿内容'
       comment:
         body: 'コメント'
-
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+      models:
+        user:
+          attributes:
+            image:
+              allowed_file_content_types: "ファイルを選択してください"
   date:
     abbr_day_names:
     - 日
