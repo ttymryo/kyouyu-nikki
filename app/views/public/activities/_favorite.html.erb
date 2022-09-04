@@ -1,0 +1,4 @@
+<%= link_to read_user_activity_path(current_user.name_id,activity), method: :patch do %>
+<%= activity.subject.user.name %>さんがいいねしました<span class="ml-auto"><%= activity.created_at.strftime('%Y/%m/%d %H:%M') %></span><br>
+<%= activity.subject.diary.body.truncate(30) %>
+<% end %>

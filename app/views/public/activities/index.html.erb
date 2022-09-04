@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-10 col-sm-12 mx-auto">
+      <div class="row mx-2">
+        <h3>通知</h3>
+        <%= link_to user_activities_path, method: :delete, class: 'ml-auto btn btn-outline-danger rounded-pill' do %>
+          <i class="fas fa-trash"></i>全消去
+        <% end %>
+      </div>
+      <div class="card-list-container jscroll-div">
+        <% if @activities.present? %>
+          <% @activities.each do |activity| %>
+            <div class="card card-index mx-auto mt-4" >
+              <div class="card-body">
+                <div class="row mx-auto col-12">
+                  <%= render "#{activity.action_type}", activity: activity %>
+                </div>
+              </div>
+            </div>
+          <%= paginate @activities %>
+          <% end %>
+        <% else %>
+          <p>通知はありません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

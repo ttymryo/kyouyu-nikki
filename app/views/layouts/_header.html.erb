@@ -100,6 +100,9 @@
         <li>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill m-1" %>
         </li>
+        <li>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn rounded-pill m-1" %>
+        </li>
       <% elsif admin_signed_in? %>
         <li>
           <%= link_to 'ユーザー', admin_users_path, class: 'btn rounded-pill m-1' %>
