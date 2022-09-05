@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-10 col-sm-12 mx-auto">
       <div class="row mx-2">
-        <h4 class="m-1">未読通知</h4>
-        <%= link_to 'すべて表示', all_user_activities_path(current_user.name_id), class: 'btn btn-outline-primary rounded-pill' %>
+        <h4 class="m-1">通知一覧</h4>
+        <%= link_to '未読を表示', user_activities_path(current_user.name_id), class: 'btn btn-outline-primary rounded-pill' %>
         <%= link_to read_all_user_activities_path(current_user.name_id), method: :delete, class: 'ml-auto btn btn-outline-danger rounded-pill' do %>
           <i class="fas fa-trash"></i>全て既読
         <% end %>
@@ -23,7 +23,7 @@
           <%= paginate @activities %>
           <% end %>
         <% else %>
-          <p>未読通知はありません</p>
+          <p>通知はありません</p>
         <% end %>
       </div>
     </div>

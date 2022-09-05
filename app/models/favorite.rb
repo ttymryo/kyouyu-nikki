@@ -11,6 +11,8 @@ class Favorite < ApplicationRecord
   private
 
   def create_activities
-    Activity.create!(subject: self, user_id: diary.user.id, action_type: Activity.action_types[:favorite])
+    unless diary.user.id == user.id
+      Activity.create!(subject: self, user_id: diary.user.id, action_type: Activity.action_types[:favorite])
+    end
   end
 end
