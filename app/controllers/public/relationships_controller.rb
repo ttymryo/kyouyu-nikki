@@ -18,4 +18,5 @@ class Public::RelationshipsController < ApplicationController
       redirect_to request.referer, alert: '自分はフォローできません'
     end
   end
+  
 end

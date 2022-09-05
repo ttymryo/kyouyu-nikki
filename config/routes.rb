@@ -40,6 +40,13 @@ Rails.application.routes.draw do
       member do
         get :follows, :followers
       end
+      resources :activities, only: [:index] do
+        collection do
+          get :all
+          delete :read_all
+        end
+        patch :read, on: :member
+      end
       resource :relationships, only: [:create, :destroy]
     end
   end

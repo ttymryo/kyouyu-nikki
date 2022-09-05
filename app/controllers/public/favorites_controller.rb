@@ -12,5 +12,5 @@ class Public::FavoritesController < ApplicationController
     @favorite = current_user.favorites.find_by(diary_id: @diary.id)
     @favorite.destroy
   end
-
+  
 end
