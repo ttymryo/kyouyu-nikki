@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
 
 
   before_action :user_acteve? #ユーザーは凍結されていない？
+  before_action :user_activity_read? #ユーザーの未読通知を確認
+
 
   #ユーザーのログイン確認でアドミンでログインしてた時のパス指定
   def custom_authenticate
@@ -38,6 +40,12 @@ class ApplicationController < ActionController::Base
   def user_acteve?
     if user_signed_in? && current_user.is_deleted?
       render "public/users/delete"
+    end
+  end
+
+  def user_activity_read?
+    if user_signed_in?
+      @unread = current_user.activities.where(read: false)
     end
   end
 

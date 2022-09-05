@@ -26,7 +26,7 @@
 
     <div>
       <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-        <i class="fas fa-bell"></i>通知
+        <span class="<% unless @unread.size == 0 %>text-danger<%end%>"><i class="fas fa-bell"></i>通知<%= @unread.size %></span>
       <% end %>
     </div>
     <% if controller.controller_name == 'homes' %>
@@ -79,8 +79,9 @@
 
         <div>
           <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-            <i class="fas fa-bell"></i>
+            <span class="<% unless @unread.size == 0 %>text-warning<%end%>"><i class="fas fa-bell"></i></span>
           <% end %>
+          <% unless @unread.size == 0 %><span class="text-danger activity-count"><%= @unread.size %></span><% end %>
         </div>
 
         <div>
@@ -88,7 +89,7 @@
             <i class="fas fa-history"></i>
           <% end %>
         </div>
-        
+
       </div>
 
     <% elsif admin_signed_in? %>
