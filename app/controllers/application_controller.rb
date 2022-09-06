@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
 
   before_action :user_acteve? #ユーザーは凍結されていない？
-  before_action :user_activity_read? #ユーザーの未読通知を確認
 
 
   #ユーザーのログイン確認でアドミンでログインしてた時のパス指定
@@ -43,10 +42,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #ユーザーの未読通知を確認
   def user_activity_read?
-    if user_signed_in?
-      @unread = current_user.activities.where(read: false)
-    end
+    @unread = current_user.activities.where(read: false)
   end
 
 

@@ -1,0 +1,5 @@
+<% unless unread.size == 0 %>
+  <%= link_to read_all_user_activities_path(current_user.name_id), method: :delete, class: 'btn btn-outline-danger rounded-pill' do %>
+    <i class="fas fa-trash"></i>全て既読
+  <% end %>
+<% end %>

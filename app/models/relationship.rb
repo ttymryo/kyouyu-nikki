@@ -8,9 +8,19 @@ class Relationship < ApplicationRecord
 
   after_create_commit :create_activities
 
+
+  def redirect_path
+    "/#{follower.name_id}"
+  end
+
+  def name
+    followed.name
+  end
+
   private
 
   def create_activities
-    Activity.create!(subject: self, user_id: followed.id, action_type: Activity.action_types[:follow])
+    Activity.create!(subject: self, user_id: followed.id, action_type: Activity.action_types[:followed_you])
   end
+
 end

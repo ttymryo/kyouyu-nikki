@@ -8,11 +8,22 @@ class Favorite < ApplicationRecord
 
   after_create_commit :create_activities
 
+
+
+  def redirect_path
+    "/#{diary.user.name_id}/diaries/#{diary.id}"
+  end
+  
+  def name
+    user.name
+  end
+
   private
 
   def create_activities
     unless diary.user.id == user.id
-      Activity.create!(subject: self, user_id: diary.user.id, action_type: Activity.action_types[:favorite])
+      Activity.create!(subject: self, user_id: diary.user.id, action_type: Activity.action_types[:favorited_the_diary])
     end
   end
+
 end

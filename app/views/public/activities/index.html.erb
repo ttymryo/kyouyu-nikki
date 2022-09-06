@@ -2,29 +2,14 @@
   <div class="row">
     <div class="col-lg-10 col-sm-12 mx-auto">
       <div class="row mx-2">
-        <h4 class="m-1">未読通知</h4>
-        <%= link_to 'すべて表示', all_user_activities_path(current_user.name_id), class: 'btn btn-outline-primary rounded-pill' %>
-        <%= link_to read_all_user_activities_path(current_user.name_id), method: :delete, class: 'ml-auto btn btn-outline-danger rounded-pill' do %>
-          <i class="fas fa-trash"></i>全て既読
-        <% end %>
+        <h4 class="m-1 activity_word">未読通知</h4>
+        <span class="activity_view_btn"><%= link_to 'すべて表示', all_user_activities_path(current_user.name_id),remote: true, class: 'btn btn-outline-primary rounded-pill' %></span>
+        <span class="read_btn ml-auto">
+          <%= render 'read_btn', unread: @unread %>
+        </span>
       </div>
       <div class="card-list-container jscroll-div mt-2">
-        <% if @activities.present? %>
-          <% @activities.each do |activity| %>
-            <%= link_to read_user_activity_path(current_user.name_id,activity), method: :patch, class: 'text-dark' do %>
-              <div class="card card-index mx-auto <%if activity.read == false%>bg-light<%end%>" >
-                <div class="card-body">
-                  <div class="row mx-auto col-12">
-                    <%= render "#{activity.action_type}", activity: activity %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <%= paginate @activities %>
-          <% end %>
-        <% else %>
-          <p>未読通知はありません</p>
-        <% end %>
+        <%= render 'activities', activities: @activities %>
       </div>
     </div>
   </div>

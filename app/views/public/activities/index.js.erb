@@ -1,0 +1,4 @@
+$('.card-list-container').html('<%= j(render 'activities', activities: @activities)  %>')
+$('.read_btn').html('<%= j(render 'read_btn', unread: @unread)  %>')
+$('.activity_view_btn').html('<%= link_to '通知一覧', all_user_activities_path(current_user.name_id),remote: true, class: 'btn btn-outline-primary rounded-pill' %>')
+$('.activity_word').html('未読通知')

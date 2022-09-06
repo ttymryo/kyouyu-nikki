@@ -5,6 +5,8 @@ class Public::DiariesController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit, :destroy] #あなたが投稿したものですか？
   before_action :public_range, only: [:show] #この投稿はあなたが見てもいいですか？
 
+  before_action :user_activity_read?, only: [:new, :show, :edit, :history] #ユーザーの未読通知を確認
+
   def set_diary
     @diary = Diary.find(params[:id])
   end

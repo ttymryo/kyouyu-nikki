@@ -1,0 +1,16 @@
+<% if activities.present? %>
+  <% activities.each do |activity| %>
+    <%= link_to read_user_activity_path(current_user.name_id,activity), method: :patch, class: 'text-dark' do %>
+      <div class="card card-index mx-auto <%if activity.read == false%>bg-light<%end%>" >
+        <div class="card-body">
+          <div class="row mx-auto col-12">
+            <%= render "message", activity: activity %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <%= paginate activities %>
+  <% end %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>
