@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :set_user #@userをセット
-  before_action :custom_authenticate, only: [:edit, :update] #ユーザーでログインしてますか？
+  before_action :custom_authenticate #ユーザーでログインしてますか？
   before_action :ensure_correct_user, only: [:edit, :update] #そのページは自分のページですか？
   before_action :is_public?, only: [:follows, :followers] #そのアカウントは公開垢ですか？
   before_action :user_activity_read?, except: [:update] #ユーザーの未読通知を確認
