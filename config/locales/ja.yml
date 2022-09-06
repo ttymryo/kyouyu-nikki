@@ -12,6 +12,11 @@ ja:
       add_commented:
         permission: "許可"
         ban: "禁止"
+    activity:
+      action_type:
+        favorited_the_diary: "投稿にいいねしました"
+        followed_you: 'あなたをフォローしました'
+        commented_on_the_diary: '投稿にコメントしました'
 
   activerecord:
     models:

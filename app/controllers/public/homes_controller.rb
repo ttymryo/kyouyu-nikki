@@ -1,8 +1,16 @@
 class Public::HomesController < ApplicationController
   before_action :custom_authenticate, only: [:sort]
+  before_action :top_activity_read?, only: [:top, :sort] #ユーザーの未読通知を確認
+
+  def top_activity_read?
+    if user_signed_in?
+      @unread = current_user.activities.where(read: false)
+    end
+  end
 
   def top
     if user_signed_in? || admin_signed_in?
+      user_activity_read?
       @select_word = 'ホーム'
       @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(20)
     end

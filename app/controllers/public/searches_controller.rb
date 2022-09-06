@@ -1,5 +1,6 @@
 class Public::SearchesController < ApplicationController
   before_action :signed_in?
+  before_action :user_activity_read? #ユーザーの未読通知を確認
 
   def search
     @word = params[:word]

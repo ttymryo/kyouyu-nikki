@@ -1,8 +1,9 @@
 class Public::ActivitiesController < ApplicationController
   before_action :custom_authenticate
+  before_action :user_activity_read?, only: [:index, :all] #ユーザーの未読通知を確認
 
   def index
-    @activities = current_user.activities.where(read: false).order(created_at: :desc).page(params[:page]).per(20)
+    @activities = @unread.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def all
@@ -19,17 +20,7 @@ class Public::ActivitiesController < ApplicationController
     unless activity.read?
       activity.update(read: true)
     end
-    redirect_to transition_path(activity)
+    redirect_to activity.subject.redirect_path
   end
 
-  def transition_path(activity)#アクションタイプごとにリダイレクト先を指定
-    case activity.action_type
-    when 'favorite'
-      user_diary_path(activity.subject.diary.user.name_id,activity.subject.diary.id)
-    when 'comment'
-      user_diary_path(activity.subject.diary.user.name_id,activity.subject.diary.id)
-    when 'follow'
-      user_path(activity.subject.follower.name_id)
-    end
-  end
 end
