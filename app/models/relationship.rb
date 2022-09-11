@@ -14,7 +14,7 @@ class Relationship < ApplicationRecord
   end
 
   def name
-    followed.name
+    follower.name
   end
 
   private
