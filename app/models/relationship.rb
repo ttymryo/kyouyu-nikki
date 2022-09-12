@@ -17,6 +17,10 @@ class Relationship < ApplicationRecord
     follower.name
   end
 
+  def icon
+    "fas fa-kiss-wink-heart text-success"
+  end
+
   private
 
   def create_activities

@@ -14,9 +14,13 @@ class Comment < ApplicationRecord
   def redirect_path
     "/#{diary.user.name_id}/diaries/#{diary.id}"
   end
-  
+
   def name
     user.name
+  end
+
+  def icon
+    "fas fa-comment text-primary"
   end
 
   private
