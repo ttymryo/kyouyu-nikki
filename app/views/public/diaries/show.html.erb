@@ -42,10 +42,12 @@
 
                 <div class="col-2 col-md-2 col-lg-2 col-xl-3 text-right p-0 d-none d-sm-block">
                   <%= @diary.created_at.strftime('%Y/%m/%d') %>
+                  <%= @diary.created_at.strftime('%H:%M') %>
                 </div>
                 <div class="col-2 text-right p-0 d-sm-none">
                   <%= @diary.created_at.strftime('%Y') %><br>
                   <%= @diary.created_at.strftime('%m/%d') %>
+                  <%= @diary.created_at.strftime('%H:%M') %>
                 </div>
 
                 <div class="col-12 mt-3 mb-4">
