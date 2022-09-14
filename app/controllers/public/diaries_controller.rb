@@ -52,7 +52,7 @@ class Public::DiariesController < ApplicationController
 
   def history
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
-    @diaries = current_user.diaries.where(created_at: @month.all_month)
+    @diaries = current_user.diaries.where(created_at: @month.beginning_of_month...@month.next_month.beginning_of_month).order(created_at: :asc)
     @day = 0
   end
 
