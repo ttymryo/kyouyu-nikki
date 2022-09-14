@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-10 col-sm-12 mx-auto">
       <div class="row mx-2 mb-2">
-        <h4 class="m-1 activity_word">未読通知</h4>
-        <span class="activity_view_btn"><%= link_to 'すべて表示', all_user_activities_path(current_user.name_id), class: 'btn btn-outline-primary rounded-pill' %></span>
+        <h4 class="m-1 activity_word">通知一覧</h4>
+        <span class="activity_view_btn"><%= link_to '未読表示', user_activities_path(current_user.name_id), class: 'btn btn-outline-primary rounded-pill' %></span>
         <span class="read_btn ml-auto">
           <%= render 'read_btn', unread: @unread %>
         </span>
