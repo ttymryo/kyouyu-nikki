@@ -3,7 +3,7 @@
     <%= link_to read_user_activity_path(current_user.name_id,activity), method: :patch, class: 'text-dark' do %>
       <div class="card card-index mx-auto <%if activity.read == false%>bg-light<%end%>" >
         <div class="card-body">
-          <div class="row col-12">
+          <div class="row col-12 mx-auto">
             <%= render "message", activity: activity %>
           </div>
         </div>
