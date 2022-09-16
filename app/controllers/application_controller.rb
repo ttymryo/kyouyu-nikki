@@ -44,7 +44,9 @@ class ApplicationController < ActionController::Base
 
   #ユーザーの未読通知を確認
   def user_activity_read?
-    @unread = current_user.activities.where(read: false)
+    if user_signed_in?
+      @unread = current_user.activities.where(read: false)
+    end
   end
 
 
