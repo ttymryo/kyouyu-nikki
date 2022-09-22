@@ -25,8 +25,14 @@
     </div>
 
     <div>
-      <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-        <span class="<% unless @unread.size == 0 %>text-danger<%end%>"><i class="fas fa-bell"></i>通知<%= @unread.size %></span>
+      <% if @unread.present? %>
+        <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+          <span class="text-warning"><i class="fas fa-bell"></i>通知<%= @unread.size %>件</span>
+        <% end %>
+      <% else %>
+        <%= link_to all_user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+          <i class="fas fa-bell"></i>通知
+        <% end %>
       <% end %>
     </div>
     <% if controller.controller_name == 'homes' %>
@@ -61,7 +67,7 @@
 <div class="d-lg-none mb-3">
   <div class="col-12 row mx-auto p-0">
 
-
+    <!--携帯画面-->
     <% if user_signed_in? %>
       <div class="col-12 row mx-auto justify-content-around">
 
@@ -78,10 +84,16 @@
         </div>
 
         <div>
-          <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
-            <span class="<% unless @unread.size == 0 %>text-warning<%end%>"><i class="fas fa-bell"></i></span>
+          <% if @unread.present? %>
+            <%= link_to user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+              <span class="text-warning"><i class="fas fa-bell"></i></span>
+            <% end %>
+            <span class="text-danger activity-count"><%= @unread.size %></span>
+          <% else %>
+            <%= link_to all_user_activities_path(current_user.name_id), class: 'btn btn-lg btn-outline-secondary rounded-pill', style: 'outline: none' do %>
+              <i class="fas fa-bell"></i>
+            <% end %>
           <% end %>
-          <% unless @unread.size == 0 %><span class="text-danger activity-count"><%= @unread.size %></span><% end %>
         </div>
 
         <div>
