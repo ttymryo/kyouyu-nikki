@@ -13,24 +13,10 @@
     </div>
 
     <div class="mx-auto d-none d-lg-block">
-      <% if user_signed_in? || admin_signed_in? %>
-        <%= form_with url: search_path, local: true, method: :get, class: 'row' do |f| %>
-          <%= f.hidden_field :range, value: 'Diary' %>
-          <div class ="row m-0 p-0 border rounded-pill bg-white">
-            <div class="w-80">
-              <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
-            </div>
-            <div class="w-20 text-right">
-              <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
-                <i class="fas fa-search"></i>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render 'search_field', word: @word %>
     </div>
 
-    <ul class="navbar-nav ml-auto p-2 rounded-pill d-none d-lg-block" style="background-color: #fff">
+    <ul class="navbar-nav ml-auto p-2 rounded-pill d-none d-lg-block bg-white">
       <% if user_signed_in? %>
         <li class="list-inline-item">
           <%= link_to current_user.name, user_path(current_user.name_id), class: "btn rounded-pill" %>
@@ -60,7 +46,7 @@
         </li>
       <% end %>
     </ul>
-    <ul class="navbar-nav ml-auto p-2 rounded-pill d-lg-none" style="background-color: #fff">
+    <ul class="navbar-nav ml-auto p-2 rounded-pill d-lg-none bg-white">
       <div>
         <% if user_signed_in? || admin_signed_in? %>
           <button class="btn rounded-pill" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
@@ -73,21 +59,7 @@
       </div>
     </ul>
     <ul class="collapse row col-12 mx-auto justify-content-center d-lg-none" id="collapseSearch">
-        <% if user_signed_in? || admin_signed_in? %>
-          <%= form_with url: search_path, local: true, method: :get do |f| %>
-            <%= f.hidden_field :range, value: 'Diary' %>
-            <div class ="row m-0 p-0 border rounded-pill bg-white">
-              <div class="">
-                <%= f.text_field :word, value: @word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
-              </div>
-              <div class="text-right">
-                <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+      <%= render 'search_field', word: @word %>
     </ul>
     <ul class="collapse col-12 list-unstyled text-right mt-2 d-lg-none" id="collapseHeader">
       <% if user_signed_in? %>
