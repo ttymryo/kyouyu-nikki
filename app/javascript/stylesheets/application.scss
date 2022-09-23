@@ -7,6 +7,10 @@
 @import 'activity';
 @import 'favorite';
 
+ body {
+   min-width: 360px;
+ }
+
 .green {color: #080;}
 .red {color: #c00;}
 .counter {margin: 0.1em 0.5em; color: #333; font-size: 0.8em;}
