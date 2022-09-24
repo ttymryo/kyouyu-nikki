@@ -49,7 +49,7 @@
                         <%= diary.created_at.strftime("%H:%M") %>
                       </div>
                       <div class="col-12 p-0 text-break <% if diary.emotion == 'happy' %>text-danger<% elsif diary.emotion == 'unhappy' %>text-primary<% else %>text-dark<% end %>">
-                        <%= simple_format(h(diary.body)) %>
+                        <%= text_url_to_link(safe_join((h(diary.body)).split("\n"),tag(:br))).html_safe %>
                       </div>
                     <% end %>
                   </div>
