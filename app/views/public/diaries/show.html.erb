@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-12 mt-3 mb-4">
-                  <%= simple_format(h(@diary.body)) %>
+                  <%= text_url_to_link(safe_join((h(@diary.body)).split("\n"),tag(:br))).html_safe %>
                 </div>
 
                 <div class="col-12 d-none d-sm-block">
