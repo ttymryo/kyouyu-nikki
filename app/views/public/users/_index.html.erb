@@ -95,7 +95,7 @@
       <% if user.is_deleted? %>
         <h5>このアカウントは凍結されています。</h5>
       <% else %>
-        <%= user.introduction %>
+        <%= text_url_to_link((h(user.introduction).html_safe)).html_safe %>
       <% end %>
     </div>
   </div>
@@ -103,7 +103,7 @@
     <% if user.is_deleted? %>
       <h6>このアカウントは凍結されています。</h6>
     <% else %>
-      <%= user.introduction %>
+      <%= text_url_to_link((h(user.introduction).html_safe)).html_safe %>
     <% end %>
   </div>
 </div>
