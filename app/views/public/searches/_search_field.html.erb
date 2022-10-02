@@ -1,0 +1,15 @@
+<% if user_signed_in? || admin_signed_in? %>
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <%= f.hidden_field :range, value: 'Diary' %>
+    <div class ="row m-0 p-0 border rounded-pill bg-white">
+      <div class="">
+        <%= f.text_field :word, value: word, placeholder: 'キーワード検索', class: 'form-control border-0 rounded-pill' %>
+      </div>
+      <div class="text-right">
+        <%= button_tag type: 'submit', class: 'btn w-20 text-right rounded-pill' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

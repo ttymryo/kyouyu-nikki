@@ -1,0 +1,17 @@
+.favorite {
+  transition:transform 0.3s;
+}
+
+.favorite-position{
+  position: relative;
+  left: 10%;
+  bottom: 61px;
+  margin-bottom: -56px;
+  div {
+    padding: 1em;
+  }
+}
+
+.favorite:hover{
+  transform:scale(1.2);
+}

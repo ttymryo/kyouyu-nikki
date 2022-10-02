@@ -5,6 +5,12 @@
 @import 'modal';
 @import 'flash';
 @import 'activity';
+@import 'favorite';
+@import 'top';
+
+ body {
+   min-width: 360px;
+ }
 
 .green {color: #080;}
 .red {color: #c00;}
@@ -24,24 +30,6 @@
 
 .pagination {
   display: none;
-}
-
-.favorite {
-  transition:transform 0.3s;
-}
-
-.favorite-position{
-  position: relative;
-  left: 10%;
-  bottom: 61px;
-  margin-bottom: -56px;
-  div {
-    padding: 1em;
-  }
-}
-
-.favorite:hover{
-  transform:scale(1.2);
 }
 
 .card-index {
@@ -102,24 +90,4 @@
 }
 .new-diary-btn:hover{
   opacity:1;
-}
-
-.top-image {
-  background-image: url('../../assets/images/bg-image.png');
-  background-size: auto;
-  opacity: 0.3;
-  width:100%;
-  height:1436px;
-  position: fixed;
-  top:10px;
-}
-
-.top p,h1,h2 {
-  padding: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 15px 15px #fff;
-}
-
-.top .btn:not(:hover) {
-  background-color: #ffffffcc;
 }
